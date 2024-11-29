@@ -29,7 +29,7 @@
             @endisset
 
             <!-- Page Content -->
-            <main>
+            <main class="ps-64">
                 {{ $slot }}
             </main>
         </div>
