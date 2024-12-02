@@ -7,7 +7,7 @@ use App\Http\Controllers\Clients\ClientDetails;
 
 Route::get('/', function () {
     return view('dashboard');
-});
+})->middleware(['auth', 'verified']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
