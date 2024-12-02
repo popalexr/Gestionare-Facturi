@@ -132,7 +132,8 @@
                     </svg>
 
                   </button>
-                  <div x-show="profileDropdownOpen" @click.outside="profileDropdownOpen = false" class="absolute right-0 z-50 mt-2 w-48 bg-white rounded shadow-lg dark:bg-gray-700">
+                  <!-- TODO: De schimbat logica pt dropdown. -->
+                  <div x-show="profileDropdownOpen" @click.outside="profileDropdownOpen = false" class="absolute right-0 z-50 mt-2 w-48 bg-white rounded shadow-lg dark:bg-gray-700" style="display: none;">
                       <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200">Profile</a>
                       <form method="POST" action="{{ route('logout') }}" class="block">
                           @csrf
