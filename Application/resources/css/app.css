@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+css button right sidebar  .sidebar-container {
+    display: flex;
+    flex-direction: column;
+    height: 56vh;
+}
+
+.language-button-container {
+    margin-top: auto;
+    padding: 0rem;
+}
