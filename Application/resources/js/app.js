@@ -1,4 +1,6 @@
 import './bootstrap';
+// import './components/sidebar';
+
 
 import Alpine from 'alpinejs';
 
