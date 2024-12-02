@@ -11,7 +11,8 @@ class ClientsController extends Controller
 {
     public function __invoke(Request $request) : View
     {
-        $clients = Clients::all(); // Get all clients from the database
+        $clients = Clients::select()->get(); // Get all clients from the database
+        
         return view('clients.clients-index', compact('clients')); // Return the view with the clients
     }
 }
