@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Clients\ClientsController; 
+use App\Http\Controllers\Clients\ClientDetails;
 
 Route::get('/', function () {
     return view('dashboard');
@@ -18,6 +19,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/clients', ClientsController::class)->name('clients.index'); // Added route for clients
+    Route::get('/client-details', ClientDetails::class)->name('clients.details'); // Added route for client details
 
 });
 
