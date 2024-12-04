@@ -6,7 +6,7 @@
         </h1>
 
         <!-- Client Details Card -->
-        <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <div class="bg-white shadow-md rounded-lg overflow-hidden" style="background-color: #1F2937;">
             <div class="p-6">
                 <div class="flex flex-col md:flex-row items-center">
                     <!-- Client Avatar -->
@@ -15,24 +15,22 @@
                     </div>
 
                     <!-- Client Information -->
-                    <div class="ml-0 md:ml-6 flex-1">
-                        <h2 class="text-2xl font-bold text-gray-900">
+                    <div class="ml-0 md:ml-6 flex-1 text-white">
+                        <h2 class="text-2xl font-bold">
                             {{ $client->name }}
                         </h2>
-                        <p class="text-gray-600">
+                        <p>
                             Email: <a href="mailto:{{ $client->email }}" class="text-blue-500 hover:underline">{{ $client->email }}</a>
                         </p>
-                        <p class="text-gray-600">
+                        <p>
                             Phone: {{ $client->phone }}
                         </p>
-                        <p class="text-gray-600">
-                            Address: {{ $client->address ?? 'No address provided' }}
+                        <p>
+                            Address: {{ $client->address }}
                         </p>
                     </div>
                 </div>
             </div>
-
-            
         </div>
 
         <!-- Back Button -->
