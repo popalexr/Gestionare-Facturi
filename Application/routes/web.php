@@ -6,6 +6,7 @@ use App\Http\Controllers\Clients\ClientsController;
 use App\Http\Controllers\Clients\ClientDetails;
 use App\Http\Controllers\Services\ServicesController;
 use App\Http\Controllers\Services\ServicesDetails;
+use App\Http\Controllers\Clients\ClientsFormController;
 
 
 Route::get('/', function () {
@@ -22,7 +23,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/clients', ClientsController::class)->name('clients.index'); 
-    Route::get('/client-details', action: ClientDetails::class)->name('clients.details'); 
+    Route::get('/client-details', ClientDetails::class)->name('clients.details'); 
+    Route::get('/clients-form', ClientsFormController::class)->name('clients.form');
     
     Route::get('/services', ServicesController::class)->name('services.index'); 
         Route::get('/service-details', ServicesDetails::class)->name('services.details'); // Added route for service details
