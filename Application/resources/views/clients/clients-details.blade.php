@@ -22,12 +22,6 @@
                         <p>
                             Email: <a href="mailto:{{ $client->email }}" class="text-blue-500 hover:underline">{{ $client->email }}</a>
                         </p>
-                        <p>
-                            Phone: {{ $client->phone }}
-                        </p>
-                        <p>
-                            Address: {{ $client->address }}
-                        </p>
                     </div>
                 </div>
             </div>
