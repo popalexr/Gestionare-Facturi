@@ -15,45 +15,99 @@
                         <span class="text-base font-normal text-gray-500 dark:text-gray-400">Add a new client</span>
                     </div>
                 </div>
-                <!-- Form -->
-                <form method="POST" class="mt-6">
-                    @csrf
-                    <div class="grid grid-cols-1 gap-6">
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Name</label>
-                            <input type="text" name="name" id="name" class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300">
+
+                <!-- Component Integration -->
+                <div class="md:flex mt-4">
+                    <!-- Sidebar for navigation -->
+                    <ul class="flex-column space-y-4 text-sm font-medium text-gray-500 dark:text-gray-400 md:me-4 mb-4 md:mb-0">
+                        <li>
+                            <a href="#" 
+                               onclick="showInput('nameInput')" 
+                               class="inline-flex items-center px-4 py-3 text-white bg-blue-700 rounded-lg active w-full dark:bg-blue-600" 
+                               aria-current="page">
+                                Name
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" 
+                               onclick="showInput('clientTypeInput')" 
+                               class="inline-flex items-center px-4 py-3 rounded-lg hover:text-gray-900 bg-gray-50 hover:bg-gray-100 w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
+                                Client Type
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" 
+                               onclick="showInput('cuiInput')" 
+                               class="inline-flex items-center px-4 py-3 rounded-lg hover:text-gray-900 bg-gray-50 hover:bg-gray-100 w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
+                                CUI
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" 
+                               onclick="showInput('addressInput')" 
+                               class="inline-flex items-center px-4 py-3 rounded-lg hover:text-gray-900 bg-gray-50 hover:bg-gray-100 w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
+                                Address
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Input fields -->
+                    <div class="w-full">
+                        <!-- Name Input -->
+                        <div id="nameInput" class="hidden">
+                            <div class="flex flex-col items-center">
+                                <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-200 text-center">Name</label>
+                                <input type="text" name="name" id="name" 
+                                       class="mt-2 w-64 py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300">
+                            </div>
                         </div>
-                        <div>
-                            <label for="client_type" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Client Type</label>
-                            <select name="client_type" id="client_type" class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300">
-                                <option value="individual">Individual</option>
-                                <option value="company">Company</option>
-                            </select>
+
+                        <!-- Client Type Input -->
+                        <div id="clientTypeInput" class="hidden">
+                            <div class="flex flex-col items-center">
+                                <label for="clientType" class="block text-sm font-medium text-gray-700 dark:text-gray-200 text-center">Client Type</label>
+                                <input type="text" name="clientType" id="clientType" 
+                                       class="mt-2 w-64 py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300">
+                            </div>
                         </div>
-                        <div>
-                            <label for="cui" class="block text-sm font-medium text-gray-700 dark:text-gray-200">CUI</label>
-                            <input type="text" name="cui" id="cui" class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300">
+
+                        <!-- CUI Input -->
+                        <div id="cuiInput" class="hidden">
+                            <div class="flex flex-col items-center">
+                                <label for="cui" class="block text-sm font-medium text-gray-700 dark:text-gray-200 text-center">CUI</label>
+                                <input type="text" name="cui" id="cui" 
+                                       class="mt-2 w-64 py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300">
+                            </div>
                         </div>
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Email</label>
-                            <input type="email" name="email" id="email" class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300">
-                        </div>
-                        <div>
-                            <label for="phone" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Phone</label>
-                            <input type="text" name="phone" id="phone" class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300">
-                        </div>
-                        <div>
-                            <label for="address" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Address</label>
-                            <input type="text" name="address" id="address" class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300">
+
+                        <!-- Address Input -->
+                        <div id="addressInput" class="hidden">
+                            <div class="flex flex-col items-center">
+                                <label for="address" class="block text-sm font-medium text-gray-700 dark:text-gray-200 text-center">Address</label>
+                                <input type="text" name="address" id="address" 
+                                       class="mt-2 w-64 py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300">
+                            </div>
                         </div>
                     </div>
-                    <div class="mt-6">
-                        <button type="submit" class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            Add Client
-                        </button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- JavaScript -->
+    <script>
+        function showInput(inputId) {
+            // Hide all inputs
+            const inputs = document.querySelectorAll('#nameInput, #clientTypeInput, #cuiInput, #addressInput');
+            inputs.forEach(input => {
+                input.classList.add('hidden'); // Add the hidden class to hide elements
+            });
+
+            // Show the selected input
+            const selectedInput = document.getElementById(inputId);
+            if (selectedInput) {
+                selectedInput.classList.remove('hidden'); // Remove the hidden class to show element
+            }
+        }
+    </script>
 </x-app-layout>
