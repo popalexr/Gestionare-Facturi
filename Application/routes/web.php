@@ -7,6 +7,7 @@ use App\Http\Controllers\Clients\ClientDetails;
 use App\Http\Controllers\Services\ServicesController;
 use App\Http\Controllers\Services\ServicesDetails;
 use App\Http\Controllers\Clients\ClientsFormController;
+use App\Http\Controllers\Users\UsersController;
 
 
 Route::get('/', function () {
@@ -27,6 +28,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/', ClientsController::class)->name('clients.index'); 
         Route::get('/details', ClientDetails::class)->name('clients.details'); 
         Route::get('/form', ClientsFormController::class)->name('clients.form');
+    });
+
+    Route::prefix('users')->group(function () {
+        Route::get('/', UsersController::class)->name('users.index');
     });
     
     Route::get('/services', ServicesController::class)->name('services.index'); 
