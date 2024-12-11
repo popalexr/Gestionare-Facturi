@@ -17,14 +17,13 @@
                 </div>
 
                 <!-- Component Integration -->
-                <div class="md:flex mt-4">
+                <div class="md:flex">
                     <!-- Sidebar for navigation -->
                     <ul class="flex-column space-y-4 text-sm font-medium text-gray-500 dark:text-gray-400 md:me-4 mb-4 md:mb-0">
-                        <li>
+                        <li class="mt-2"> 
                             <a href="#" 
                                onclick="showInput('nameInput')" 
-                               class="inline-flex items-center px-4 py-3 text-white bg-blue-700 rounded-lg active w-full dark:bg-blue-600" 
-                               aria-current="page">
+                               class="inline-flex items-center px-4 py-3 rounded-lg hover:text-gray-900 bg-gray-50 hover:bg-gray-100 w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
                                 Name
                             </a>
                         </li>
@@ -88,26 +87,34 @@
                                        class="mt-2 w-64 py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300">
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                        
+                        <div class="mt-6 hidden" id="addClientButton">
+    <button type="submit" class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+        Add Client
+    </button>
+</div>
 
-    <!-- JavaScript -->
-    <script>
-        function showInput(inputId) {
-            // Hide all inputs
-            const inputs = document.querySelectorAll('#nameInput, #clientTypeInput, #cuiInput, #addressInput');
-            inputs.forEach(input => {
-                input.classList.add('hidden'); // Add the hidden class to hide elements
-            });
+<script>
+    let interacted = false; 
 
-            // Show the selected input
-            const selectedInput = document.getElementById(inputId);
-            if (selectedInput) {
-                selectedInput.classList.remove('hidden'); // Remove the hidden class to show element
-            }
+    function showInput(inputId) {
+        
+        const inputs = document.querySelectorAll('#nameInput, #clientTypeInput, #cuiInput, #addressInput');
+        inputs.forEach(input => {
+            input.classList.add('hidden'); 
+        });
+
+       
+        const selectedInput = document.getElementById(inputId);
+        if (selectedInput) {
+            selectedInput.classList.remove('hidden'); 
         }
-    </script>
+
+       
+        if (!interacted) {
+            interacted = true; 
+            document.getElementById('addClientButton').classList.remove('hidden');
+        }
+    }
+</script>
 </x-app-layout>
