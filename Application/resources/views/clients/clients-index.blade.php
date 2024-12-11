@@ -15,7 +15,7 @@
                         <span class="text-base font-normal text-gray-500 dark:text-gray-400">This is a list of latest transactions</span>
                     </div>
 
-                    <a class="bg-slate-700 hover:bg-slate-900 text-white font-bold py-2 px-4 rounded">
+                    <a href="{{ route('clients.form') }}" class="bg-slate-700 hover:bg-slate-900 text-white font-bold py-2 px-4 rounded">
                         Add client
                     </a>
                 </div>
