@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <!-- Form -->
-                <form action="{{ route('clients.store') }}" method="POST" class="mt-6">
+                <form method="POST" class="mt-6">
                     @csrf
                     <div class="grid grid-cols-1 gap-6">
                         <div>

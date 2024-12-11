@@ -15,6 +15,9 @@ class ClientsFormController extends Controller
     {
         $this->id = $request->get('id', 0);
 
+        if($this->id == 0)
+            return view('clients.add-clients');
+
         return view('clients.clients-form')->with([
             'id', $this->id
         ]);
