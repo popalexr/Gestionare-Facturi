@@ -12,7 +12,7 @@
                 <div class="items-center justify-between lg:flex">
                     <div class="mb-4 lg:mb-0">
                         <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">Users List</h3>
-                        <span class="text-base font-normal text-gray-500 dark:text-gray-400">This is a list of latest transactions</span>
+                        <span class="text-base font-normal text-gray-500 dark:text-gray-400">This is a list of users and permissions</span>
                     </div>
 
                     <a  class="bg-slate-700 hover:bg-slate-900 text-white font-bold py-2 px-4 rounded">
