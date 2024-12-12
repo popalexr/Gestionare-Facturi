@@ -1,11 +1,15 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Clients') }}
+            {{ __('Services') }}
         </h2>
     </x-slot>
 
+    <a href="{{ route('services.form') }}" class="bg-slate-700 hover:bg-slate-900 text-white font-bold py-2 px-4 rounded">
+        Add services(temporary)
+    </a>
     <div class="py-12">
+           
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
             <div class="flex flex-col mt-6">
@@ -50,7 +54,7 @@
                                                     </td>
                                                     <td class="p-4 text-sm font-medium text-right dark:text-white">
                                                         <!-- Magnifying Glass Icon -->
-                                                        <a href="{{ route('services.details', $service->id) }}" 
+                                                        <a href="{{ route('services.details', ['id' => $service->id]) }}" 
                                                         class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-200"
                                                         data-tooltip-target="tooltip-magnify-{{ $service->id }}">
                                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-4 h-4 inline-block" style="fill: white;">

@@ -8,6 +8,7 @@ use App\Http\Controllers\Services\ServicesController;
 use App\Http\Controllers\Services\ServicesDetails;
 use App\Http\Controllers\Clients\ClientsFormController;
 use App\Http\Controllers\Users\UsersController;
+use App\Http\Controllers\Services\ServicesFormController;
 
 
 Route::get('/', function () {
@@ -34,9 +35,11 @@ Route::middleware('auth')->group(function () {
         Route::get('/', UsersController::class)->name('users.index');
     });
     
-    Route::get('/services', ServicesController::class)->name('services.index'); 
-    Route::get('/service-details', ServicesDetails::class)->name('services.details'); // Added route for service details
-
+    Route::prefix('services')->group(function () {
+        Route::get('/', ServicesController::class)->name('services.index'); 
+        Route::get('/details', ServicesDetails::class)->name('services.details'); // Added route for service details
+        Route::get('/form', ServicesFormController::class)->name('services.form');
+    });
 });
 
 require __DIR__.'/auth.php';
