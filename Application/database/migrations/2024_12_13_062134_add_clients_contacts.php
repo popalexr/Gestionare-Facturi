@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('title');
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
 
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
         });
     }
 
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('clients_contacts');
     }
 };
