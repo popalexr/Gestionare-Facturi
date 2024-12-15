@@ -12,105 +12,109 @@
                 <div class="items-center justify-between lg:flex">
                     <div class="mb-4 lg:mb-0">
                         <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">Add Client</h3>
-                        <span class="text-base font-normal text-gray-500 dark:text-gray-400">Add a new client</span>
                     </div>
                 </div>
 
                 <!-- Component Integration -->
                 <div class="md:flex">
                     <!-- Sidebar for navigation -->
-                    <ul class="flex-column space-y-4 text-sm font-medium text-gray-500 dark:text-gray-400 md:me-4 mb-4 md:mb-0">
-                        <li class="mt-2"> 
+                    <ul class="flex flex-col items-center space-y-4 text-sm font-medium text-gray-500 dark:text-gray-400 mb-4">
+                         
+
                             <a href="#" 
-                               onclick="showInput('nameInput')" 
+                               onclick="showInput('detailsGeneral')" 
                                class="inline-flex items-center px-4 py-3 rounded-lg hover:text-gray-900 bg-gray-50 hover:bg-gray-100 w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
-                                Name
+                               Detalii generale
                             </a>
-                        </li>
+                        
                         <li>
                             <a href="#" 
-                               onclick="showInput('clientTypeInput')" 
+                               onclick="showInput('contactPersons')" 
                                class="inline-flex items-center px-4 py-3 rounded-lg hover:text-gray-900 bg-gray-50 hover:bg-gray-100 w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
-                                Client Type
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" 
-                               onclick="showInput('cuiInput')" 
-                               class="inline-flex items-center px-4 py-3 rounded-lg hover:text-gray-900 bg-gray-50 hover:bg-gray-100 w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
-                                CUI
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" 
-                               onclick="showInput('addressInput')" 
-                               class="inline-flex items-center px-4 py-3 rounded-lg hover:text-gray-900 bg-gray-50 hover:bg-gray-100 w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
-                                Address
+                               Persoane de contact
                             </a>
                         </li>
                     </ul>
 
                     <!-- Input fields -->
                     <div class="w-full">
-                        <!-- Name Input -->
-                        <div id="nameInput" class="hidden">
-                            <div class="flex flex-col items-center">
-                                <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-200 text-center">Name</label>
-                                <input type="text" name="name" id="name" 
-                                       class="mt-2 w-64 py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300">
+                        <!-- Detalii Generale Input -->
+                        <div id="detailsGeneral">
+                            <div class="flex flex-col items-center space-y-4">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-200 text-center">Name</label>
+                                    <input type="text" name="name" id="name"
+                                           class="mt-2 w-64 py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300">
+                                </div>
+                                <div>
+                                    <label for="clientType" class="block text-sm font-medium text-gray-700 dark:text-gray-200 text-center">Client Type</label>
+                                    <input type="text" name="clientType" id="clientType"
+                                           class="mt-2 w-64 py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300">
+                                </div>
+                                <div>
+                                    <label for="cui" class="block text-sm font-medium text-gray-700 dark:text-gray-200 text-center">CUI</label>
+                                    <input type="text" name="cui" id="cui"
+                                           class="mt-2 w-64 py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300">
+                                </div>
+                                <div>
+                                    <label for="address" class="block text-sm font-medium text-gray-700 dark:text-gray-200 text-center">Address</label>
+                                    <input type="text" name="address" id="address"
+                                           class="mt-2 w-64 py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300">
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Client Type Input -->
-                        <div id="clientTypeInput" class="hidden">
-                            <div class="flex flex-col items-center">
-                                <label for="clientType" class="block text-sm font-medium text-gray-700 dark:text-gray-200 text-center">Client Type</label>
-                                <input type="text" name="clientType" id="clientType" 
-                                       class="mt-2 w-64 py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300">
+                        <!-- Persoane de Contact Input -->
+                        <div id="contactPersons" class="hidden">
+                            <div class="flex flex-col items-center space-y-4">
+                                <div>
+                                    <label for="contactFirstName" class="block text-sm font-medium text-gray-700 dark:text-gray-200 text-center">First Name</label>
+                                    <input type="text" name="contactFirstName" id="contactFirstName"
+                                           class="mt-2 w-64 py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300">
+                                </div>
+                                <div>
+                                    <label for="contactLastName" class="block text-sm font-medium text-gray-700 dark:text-gray-200 text-center">Last Name</label>
+                                    <input type="text" name="contactLastName" id="contactLastName"
+                                           class="mt-2 w-64 py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300">
+                                </div>
+                                <div>
+                                    <label for="contactEmail" class="block text-sm font-medium text-gray-700 dark:text-gray-200 text-center">Email</label>
+                                    <input type="email" name="contactEmail" id="contactEmail"
+                                           class="mt-2 w-64 py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300">
+                                </div>
+                                <div>
+                                    <label for="contactPosition" class="block text-sm font-medium text-gray-700 dark:text-gray-200 text-center">Position</label>
+                                    <input type="text" name="contactPosition" id="contactPosition"
+                                           class="mt-2 w-64 py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300">
+                                </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
 
-                        <!-- CUI Input -->
-                        <div id="cuiInput" class="hidden">
-                            <div class="flex flex-col items-center">
-                                <label for="cui" class="block text-sm font-medium text-gray-700 dark:text-gray-200 text-center">CUI</label>
-                                <input type="text" name="cui" id="cui" 
-                                       class="mt-2 w-64 py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300">
-                            </div>
-                        </div>
-
-                        <!-- Address Input -->
-                        <div id="addressInput" class="hidden">
-                            <div class="flex flex-col items-center">
-                                <label for="address" class="block text-sm font-medium text-gray-700 dark:text-gray-200 text-center">Address</label>
-                                <input type="text" name="address" id="address" 
-                                       class="mt-2 w-64 py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300">
-                            </div>
-                        </div>
-                        
-                        <div class="mt-6 hidden" id="addClientButton">
-    <button type="submit" class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-        Add Client
-    </button>
-</div>
+                <div class="mt-6" id="addClientButton">
+                    <div class="flex justify-center">
+                        <button type="submit" class="py-1 px-3 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Add Client
+                        </button>
+                    </div>
+                </div>
 
 <script>
     let interacted = false; 
 
     function showInput(inputId) {
-        
-        const inputs = document.querySelectorAll('#nameInput, #clientTypeInput, #cuiInput, #addressInput');
+        const inputs = document.querySelectorAll('#detailsGeneral, #contactPersons');
         inputs.forEach(input => {
             input.classList.add('hidden'); 
         });
 
-       
         const selectedInput = document.getElementById(inputId);
         if (selectedInput) {
             selectedInput.classList.remove('hidden'); 
         }
 
-       
         if (!interacted) {
             interacted = true; 
             document.getElementById('addClientButton').classList.remove('hidden');
