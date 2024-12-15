@@ -83,6 +83,7 @@
                                     </tbody>
                                 </table>
                             </div>
+                            {{ $clients->onEachSide(3)->links() }}
                         </div>
                     </div>
                 </div>

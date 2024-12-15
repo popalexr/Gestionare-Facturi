@@ -10,4 +10,6 @@ class Clients extends Model
     use HasFactory;
 
     protected $table = 'clients';
+
+    
 }
