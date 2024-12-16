@@ -1,17 +1,20 @@
 <x-app-layout>
     <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <!-- Header Section -->
-        <h1 class="text-3xl font-extrabold text-center text-gray-800 mb-8">
-            Client Details
-        </h1>
+        
 
         <!-- Client Details Card -->
-        <div class="bg-white shadow-md rounded-lg overflow-hidden" style="background-color: #1F2937;">
+        <div class="mt-12 bg-white shadow-md rounded-lg overflow-hidden" style="background-color: #1F2937;">
             <div class="p-6">
                 <div class="flex flex-col md:flex-row items-center">
                     <!-- Client Avatar -->
                     <div class="flex-shrink-0 mb-4 md:mb-0">
-                        <img class="w-24 h-24 rounded-full object-cover border border-gray-300" src="/path-to-avatar-placeholder.jpg" alt="Client Avatar">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                        <!-- Circle for the Head -->
+                        <circle cx="12" cy="8" r="4" />
+                        <!-- Path for the Shoulders -->
+                        <path d="M4 20c0-4 4-7 8-7s8 3 8 7H4z" />
+                        </svg>
                     </div>
 
                     <!-- Client Information -->
