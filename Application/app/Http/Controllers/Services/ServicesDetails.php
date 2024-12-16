@@ -11,9 +11,12 @@ class ServicesDetails extends Controller
     public function __invoke(Request $request)
     {
         $id = $request->query('id'); // Get the id from the request
+
         $service = Services::find($id); // Find the service by the id
+
         if(blank($service))
             return redirect()->route('services.index'); 
+
         // Redirect to the services index
         return view('services.service-details', compact('service'));
     }
