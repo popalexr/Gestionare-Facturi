@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Models\Clients;
 
 class ClientsFormController extends Controller
 {
@@ -25,6 +26,18 @@ class ClientsFormController extends Controller
 
     public function post(Request $request) : RedirectResponse
     {
+        $this->id = $request->get('id', 0);
+
+        if($this->id > 0 && !$this->clientExists($this->id))
+            return redirect()->route('clients.index')->with('error', 'Client not found.');
+
+        $request->validate($this->getFormValidationRules(), $this->getFormValidationMessages());
+        
+        if ($this->id == 0)
+            $this->addNewClient($request);
+        else
+            $this->updateClient($request);
+
         return redirect()->route('clients.index');
     }
 
@@ -56,7 +69,39 @@ class ClientsFormController extends Controller
             'country' => 'Country field is invalid.',
             'client_type.required' => 'Client type field is required.',
             'client_type.in' => 'Client type field is invalid.',
+            'cui.required' => 'CUI field is required.',
+            'cui' => 'CUI field is invalid.',
         ];
     }
 
+    private function clientExists($id)
+    {
+        return Clients::where('id', $id)->exists();
+    }
+
+    private function addNewClient($request)
+    {
+        Clients::insert([
+            'name'          => $request->name,
+            'address'       => $request->address,
+            'city'          => $request->city,
+            'county'        => $request->county,
+            'country'       => $request->country,
+            'client_type'   => $request->client_type,
+            'cui'           => $request->cui,
+        ]);
+    }
+
+    private function updateClient($request)
+    {
+        Clients::where('id', $this->id)->update([
+            'name'          => $request->name,
+            'address'       => $request->address,
+            'city'          => $request->city,
+            'county'        => $request->county,
+            'country'       => $request->country,
+            'client_type'   => $request->client_type,
+            'cui'           => $request->cui,
+        ]);
+    }
 }

@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/', ClientsController::class)->name('clients.index'); 
         Route::get('/details', ClientDetails::class)->name('clients.details'); 
         Route::get('/form', ClientsFormController::class)->name('clients.form');
+        Route::post('/form', [ClientsFormController::class, 'post']);
     });
 
     Route::prefix('users')->group(function () {
