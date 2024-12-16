@@ -14,7 +14,7 @@ class ServicesFormController extends Controller
 
     public function __invoke(Request $request) : View
     {
-        $this->id = $request->query('id');
+        $this->id = $request->query('id', 0);
 
         if($this->id == 0)
             return view('services.add-services');
