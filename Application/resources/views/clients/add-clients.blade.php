@@ -129,7 +129,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mt-6" id="addClientButton">
+                    <div class="mt-6">
                         <div class="flex justify-center">
                             <button type="submit" class="py-1 px-3 border-4 border-gray-300 rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 Add Client
@@ -154,10 +154,7 @@
             selectedInput.classList.remove('hidden'); 
         }
 
-        if (!interacted) {
-            interacted = true; 
-            document.getElementById('addClientButton').classList.remove('hidden');
-        }
+        
     }
 </script>
 </x-app-layout>
