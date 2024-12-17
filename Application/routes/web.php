@@ -9,6 +9,9 @@ use App\Http\Controllers\Services\ServicesDetails;
 use App\Http\Controllers\Clients\ClientsFormController;
 use App\Http\Controllers\Users\UsersController;
 use App\Http\Controllers\Services\ServicesFormController;
+use App\Http\Controllers\Settings\SettingsController;
+use App\Http\Controllers\Settings\SettingsDetails;
+use App\Http\Controllers\Settings\SettingsFormController;
 
 
 Route::get('/', function () {
@@ -40,6 +43,15 @@ Route::middleware('auth')->group(function () {
         Route::get('/', ServicesController::class)->name('services.index'); 
         Route::get('/details', ServicesDetails::class)->name('services.details'); // Added route for service details
         Route::get('/form', ServicesFormController::class)->name('services.form');
+    });
+
+    Route::middleware('auth')->group(function () {
+        Route::prefix('settings')->group(function () {
+            Route::get('/', SettingsController::class)->name('settings.index'); // Single-action
+            Route::get('/details', SettingsDetails::class)->name('settings.details'); // Single-action
+            Route::get('/form', SettingsFormController::class)->name('settings.form'); // Single-action
+            Route::post('/form', [SettingsFormController::class, 'post'])->name('settings.form.post'); // For form submission
+        });
     });
 });
 
