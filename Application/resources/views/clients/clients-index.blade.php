@@ -76,6 +76,22 @@
                                                             View
                                                             <div class="tooltip-arrow" data-popper-arrow></div>
                                                         </div>
+
+                                                        <!-- Edit client details -->
+                                                        <a href="{{ route('clients.form', ['id' => $client->id]) }}" 
+                                                            class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-200"
+                                                            data-tooltip-target="tooltip-edit-{{ $client->id }}"
+                                                        >
+                                                            <i class="fa-solid fa-pen"></i>
+                                                        </a>
+                                                        <!-- Tooltip -->
+                                                        <div id="tooltip-edit-{{ $client->id }}" 
+                                                            role="tooltip" 
+                                                            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+                                                        >
+                                                            Edit
+                                                            <div class="tooltip-arrow" data-popper-arrow></div>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             @endforeach

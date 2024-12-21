@@ -21,8 +21,14 @@ class ClientsFormController extends Controller
         if($this->id == 0)
             return view('clients.add-clients');
 
-        return view('clients.clients-form')->with([
-            'id', $this->id
+        $client = $this->getClientDetails();
+
+        if(blank($client))
+            return redirect()->route('clients.index')->with('error', 'Client not found.');
+
+        return view('clients.edit-clients')->with([
+            'client' => $client['client'],
+            'contacts' => $client['contacts'],
         ]);
     }
 
@@ -48,6 +54,21 @@ class ClientsFormController extends Controller
         DB::commit();
 
         return redirect()->route('clients.index');
+    }
+
+    private function getClientDetails() : array|null
+    {
+        $client = Clients::where('id', $this->id)->first();
+        
+        if(blank($client))
+            return null;
+
+        $contacts = ClientsContacts::where('client_id', $this->id)->get();
+
+        return [
+            'client' => $client,
+            'contacts' => $contacts,
+        ];
     }
 
     private function getFormValidationRules() : Array
