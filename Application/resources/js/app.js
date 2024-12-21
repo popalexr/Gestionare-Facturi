@@ -1,7 +1,7 @@
 import './bootstrap';
 import 'flowbite';
 
-import './components/clients_form_tab';
+import './components/all';
 
 import './vue/components';
 
