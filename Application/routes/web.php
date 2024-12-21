@@ -43,6 +43,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/', ServicesController::class)->name('services.index'); 
         Route::get('/details', ServicesDetails::class)->name('services.details'); // Added route for service details
         Route::get('/form', ServicesFormController::class)->name('services.form');
+        Route::post('/form', [ServicesFormController::class, 'post']);
     });
 
     Route::middleware('auth')->group(function () {

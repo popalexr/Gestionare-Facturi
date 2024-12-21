@@ -1,38 +1,58 @@
 <x-app-layout>
-
     <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <!-- Header Section -->
-        <h1 class="text-3xl font-extrabold text-center text-gray-800 mb-8">
-            Service Details
-        </h1>
+        
 
-        <!-- Service Details Card -->
-        <div class="bg-white shadow-md rounded-lg overflow-hidden" style="background-color: #1F2937;">
+        <!-- Client Details Card -->
+        <div class="mt-12 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800 overflow-hidden">
             <div class="p-6">
-                <div class="flex flex-col md:flex-row items-center">
-                    <!-- Service Avatar -->
-                    <div class="flex-shrink-0 mb-4 md:mb-0">
-                        <img class="w-24 h-24 rounded-full object-cover border border-gray-300" src="/path-to-avatar-placeholder.jpg" alt="Service Avatar">
-                    </div>
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200">Service Details</h2>
+                    <a href="{{ route('services.form', ['id' => $service->id]) }}" class="bg-slate-700 hover:bg-slate-900 text-white font-bold py-2 px-4 rounded">
+                        Edit
+                    </a>
+                </div>
 
-                    <!-- Service Information -->
-                    <div class="ml-0 md:ml-6 flex-1 text-white">
-                        <h2 class="text-2xl font-bold">
-                            {{ $service->name }}
-                        </h2>
-                        <p>
-                            Price: <span class="text-blue-500">{{ $service->price }}</span>
-                        </p>
-                    </div>
+                <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
+                    <thead class="bg-gray-50 dark:bg-gray-700">
+                        <tr>
+                            <th scope="col" class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white">
+                                Name
+                            </th>
+                            <th scope="col" class="p-4 text-xs font-medium tracking-wider text-center text-gray-500 uppercase dark:text-white">
+                                Price
+                            </th>
+                            <th scope="col" class="p-4 text-xs font-medium tracking-wider text-right text-gray-500 uppercase dark:text-white">
+                                VAT
+                            </th>
+                            <th scope="col" class="p-4 text-xs font-medium tracking-wider text-right text-gray-500 uppercase dark:text-white">
+                                Final Price
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white dark:bg-gray-800 mb-4">
+                        <tr>
+                            <td class="p-4 text-left text-sm text-gray-900 dark:text-white">
+                                {{ $service->name }}
+                            </td>
+                            <td class="p-4 text-center text-sm text-gray-900 dark:text-white">
+                                {{ $service->price }} {{ $service->getCurrencySymbol() }}
+                            </td>
+                            <td class="p-4 text-right text-sm text-gray-900 dark:text-white">
+                                {{ $service->vat }} %
+                            </td>
+                            <td class="p-4 text-right text-sm text-gray-900 dark:text-white">
+                                {{ $service->price + ( $service->price * ($service->vat / 100) ) }} {{ $service->getCurrencySymbol() }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="pt-4">
+                    <h4 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">Description</h4>
+                    <p class="ml-2 text-sm text-gray-600 dark:text-gray-300">{{ $service->description }}</p>
                 </div>
             </div>
-        </div>
-
-        <!-- Back Button -->
-        <div class="mt-8 text-center">
-            <a href="{{ route('services.index') }}" class="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700">
-                Back to Services
-            </a>
         </div>
     </div>
 </x-app-layout>

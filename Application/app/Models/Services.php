@@ -8,6 +8,8 @@ class Services extends Model
 {
     protected $table = 'services';
 
+    public $timestamps = true;
+
     /**
      * List of supported curerncies
      */
@@ -25,5 +27,14 @@ class Services extends Model
         }
         
         return $this->currencies;
+    }
+
+    public function getCurrencySymbol(): string
+    {
+        if (empty($this->currencies[$this->currency])) {
+            return $this->currency;
+        }
+
+        return $this->currencies[$this->currency];
     }
 }
