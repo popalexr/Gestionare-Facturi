@@ -1,6 +1,9 @@
 import './bootstrap';
-// import './components/sidebar';
+import 'flowbite';
 
+import './components/clients_form_tab';
+
+import './vue/components';
 
 import Alpine from 'alpinejs';
 

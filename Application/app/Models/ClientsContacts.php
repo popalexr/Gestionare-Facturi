@@ -7,4 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class ClientsContacts extends Model
 {
     protected $table = 'clients_contacts';
+
+    public $timestamps = true;
 }

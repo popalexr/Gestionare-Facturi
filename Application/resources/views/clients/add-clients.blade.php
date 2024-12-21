@@ -20,16 +20,16 @@
                             <ul class="flex flex-row justify-start space-x-4 text-sm font-medium text-gray-500 dark:text-gray-400 mb-2 w-full">
                                 <li>
                                     <a href="#" 
-                                        onclick="showInput('detailsGeneral')" 
-                                        class="inline-flex items-center px-4 py-3 border border-black-900 rounded-lg hover:text-gray-900 bg-gray-50 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white text-center">
-                                            Detalii generale
+                                        data-for="detailsGeneral"
+                                        class="inline-flex items-center px-4 py-3 border border-black-900 rounded-lg hover:text-gray-900 bg-gray-50 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white text-center clients-form-tab">
+                                            General Details
                                     </a>
                                  </li>
                                 <li>
                                     <a href="#" 
-                                        onclick="showInput('contactPersons')" 
-                                        class="inline-flex items-center px-4 py-3 border border-black-900 rounded-lg hover:text-gray-900 bg-gray-50 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white text-center">
-                                            Persoane de contact
+                                        data-for="contactPersons"
+                                        class="inline-flex items-center px-4 py-3 border border-black-900 rounded-lg hover:text-gray-900 bg-gray-50 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white text-center clients-form-tab">
+                                            Contact Details
                                     </a>
                                 </li>
                             </ul>
@@ -41,36 +41,52 @@
                         <!-- Input fields -->
                         <div class="w-full">
                             <!-- Detalii Generale Input -->
-                            <div id="detailsGeneral" class="w-full p-4 bg-white dark:bg-gray-800 rounded-md shadow-md">
+                            <div id="detailsGeneral" class="w-full p-4">
   
                                 <div class="space-y-4 mb-4">
                                     <!-- Name -->
                                     <div>
                                         <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Name</label>
-                                        <input type="text" name="name" id="name"
+                                        <input type="text" name="name" id="name" value="{{ old('name') }}"
                                             class="mt-1 w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300">
+                                        
+                                        @error('name')
+                                            <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
+                                        @enderror
                                     </div>
 
                                     <!-- CUI -->
                                     <div>
                                         <label for="cui" class="block text-sm font-medium text-gray-700 dark:text-gray-200">CUI</label>
-                                        <input type="text" name="cui" id="cui"
+                                        <input type="text" name="cui" id="cui" value="{{ old('cui') }}"
                                             class="mt-1 w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300">
+                                        
+                                        @error('cui')
+                                            <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
+                                        @enderror    
                                     </div>
                                     <div class="mt-4">
                                     <label for="client_type" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Client Type</label>
                                     <select name="client_type" id="client_type"
                                         class="mt-1 w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300">
-                                        <option value="individual">Individual</option>
-                                        <option value="company">Company</option>
+                                        <option value="individual" @if(old('client_type') == 'individual') checked @endif>Individual</option>
+                                        <option value="company" @if(old('client_type') == 'company') @endif>Company</option>
                                     </select>
+                                    
+                                    @error('client_type')
+                                        <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
                                     <!-- Address -->
                                     <div>
                                         <label for="address" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Address</label>
-                                        <input type="text" name="address" id="address"
+                                        <input type="text" name="address" id="address" value="{{ old('address') }}"
                                             class="mt-1 w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300">
+                                        
+                                        @error('address')
+                                            <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -79,52 +95,42 @@
                                     <!-- Country -->
                                     <div>
                                         <label for="country" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Country</label>
-                                        <input type="text" name="country" id="country"
+                                        <input type="text" name="country" id="country" value="{{ old('country') }}"
                                             class="mt-1 w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300">
+                                        
+                                        @error('country')
+                                            <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
+                                        @enderror
                                     </div>
 
                                     <!-- County -->
                                     <div>
                                         <label for="county" class="block text-sm font-medium text-gray-700 dark:text-gray-200">County</label>
-                                        <input type="text" name="county" id="county"
+                                        <input type="text" name="county" id="county" value="{{ old('county') }}"
                                             class="mt-1 w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300">
+                                        
+                                        @error('county')
+                                            <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
+                                        @enderror
                                     </div>
 
                                     <!-- City -->
                                     <div>
                                         <label for="city" class="block text-sm font-medium text-gray-700 dark:text-gray-200">City</label>
-                                        <input type="text" name="city" id="city"
+                                        <input type="text" name="city" id="city" value="{{ old('city') }}"
                                             class="mt-1 w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300">
+                                        
+                                        @error('city')
+                                            <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
-
-                            
                             </div>
-
 
                             <!-- Persoane de Contact Input -->
                             <div id="contactPersons" class="hidden">
-                                <div class="flex flex-col items-center space-y-4">
-                                    <div>
-                                        <label for="contactFirstName" class="block text-sm font-medium text-gray-700 dark:text-gray-200 text-center">First Name</label>
-                                        <input type="text" name="contactFirstName" id="contactFirstName"
-                                            class="mt-2 w-64 py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300">
-                                    </div>
-                                    <div>
-                                        <label for="contactLastName" class="block text-sm font-medium text-gray-700 dark:text-gray-200 text-center">Last Name</label>
-                                        <input type="text" name="contactLastName" id="contactLastName"
-                                            class="mt-2 w-64 py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300">
-                                    </div>
-                                    <div>
-                                        <label for="contactEmail" class="block text-sm font-medium text-gray-700 dark:text-gray-200 text-center">Email</label>
-                                        <input type="email" name="contactEmail" id="contactEmail"
-                                            class="mt-2 w-64 py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300">
-                                    </div>
-                                    <div>
-                                        <label for="contactPosition" class="block text-sm font-medium text-gray-700 dark:text-gray-200 text-center">Position</label>
-                                        <input type="text" name="contactPosition" id="contactPosition"
-                                            class="mt-2 w-64 py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300">
-                                    </div>
+                                <div id="show-client-contacts">
+                                    <show-client-contacts-component></show-client-contacts-component>
                                 </div>
                             </div>
                         </div>
@@ -138,6 +144,9 @@
                     </div>
                 </div> 
             </form>
+         </div>
+         <div id="add-client-contacts">
+             <add-client-contacts-component></add-client-contacts-component>
          </div>
     </div>
 <script>
@@ -153,8 +162,9 @@
         if (selectedInput) {
             selectedInput.classList.remove('hidden'); 
         }
-
-        
     }
+</script>
+<script>
+    let contacts = @json(old('contacts', []));
 </script>
 </x-app-layout>
