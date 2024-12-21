@@ -14,12 +14,11 @@ class AddTableSettings extends Migration
             $table->string('value', 255); // Value
             $table->enum('type', ['int', 'string', 'json']); // Type (enum)
             $table->timestamps(); // Timestamps (optional)
-            Schema::rename('add_table_settings', 'settings');
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('add_table_settings');
+        Schema::dropIfExists('settings');
     }
 }
