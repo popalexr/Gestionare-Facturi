@@ -53,7 +53,7 @@ class ClientsFormController extends Controller
 
         DB::commit();
 
-        return redirect()->route('clients.index');
+        return redirect()->route('clients.details', ['id' => $this->id])->with('success', 'Client saved successfully.');
     }
 
     private function getClientDetails() : array|null
