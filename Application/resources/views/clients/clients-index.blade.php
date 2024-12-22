@@ -91,6 +91,24 @@
                                                             Edit
                                                             <div class="tooltip-arrow" data-popper-arrow></div>
                                                         </div>
+
+                                                        <!-- Delete client -->
+                                                        <form action="{{ route('clients.delete', $client->id) }}" method="POST" style="display:inline; margin-left: 10px;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-200" 
+                                                                    onclick="return confirm('Are you sure you want to delete this client?')" 
+                                                                    data-tooltip-target="tooltip-delete-{{ $client->id }}">
+                                                                <i class="fa-solid fa-trash"></i>
+                                                            </button>
+                                                        </form>
+                                                        <!-- Tooltip -->
+                                                        <div id="tooltip-delete-{{ $client->id }}" 
+                                                            role="tooltip" 
+                                                            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+                                                        >
+                                                            Delete
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             @endforeach
