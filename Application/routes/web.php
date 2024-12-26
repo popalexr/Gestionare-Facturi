@@ -10,10 +10,12 @@ use App\Http\Controllers\Clients\ClientsFormController;
 use App\Http\Controllers\Clients\DeleteClientController;
 use App\Http\Controllers\Users\UsersController;
 use App\Http\Controllers\Users\UserDetailsController;
+use App\Http\Controllers\Users\UsersFormController;
 use App\Http\Controllers\Services\ServicesFormController;
 use App\Http\Controllers\Settings\SettingsController;
 use App\Http\Controllers\Settings\SettingsDetails;
 use App\Http\Controllers\Settings\SettingsFormController;
+use App\Http\Controllers\Users\DeleteUserController;
 
 Route::get('/', function () {
     return view('dashboard');
@@ -40,6 +42,9 @@ Route::middleware('auth')->group(function () {
     Route::prefix('users')->group(function () {
         Route::get('/', UsersController::class)->name('users.index')->can('users-view');
         Route::get('/details', UserDetailsController::class)->name('users.details')->can('users-view');
+        Route::get('/form', UsersFormController::class)->name('users.form')->can('users-form');
+        Route::post('/form', [UsersFormController::class, 'post'])->can('users-form');
+        Route::post('/delete', DeleteUserController::class)->name('users.delete')->can('users-delete');
     });
     
     Route::prefix('services')->group(function () {

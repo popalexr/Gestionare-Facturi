@@ -1,2 +1,3 @@
-import './clients_form_tab';
+import './form_tab';
 import './tooltip';
+import './permissions_checkbox';

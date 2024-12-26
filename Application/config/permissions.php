@@ -1,17 +1,17 @@
 <?php
 
 return [
-    'users' => [
+    'Users' => [
         'users-view'   => 'View users',
         'users-form'   => 'View user form',
         'users-delete' => 'Delete users',
     ],
-    'clients' => [
+    'Clients' => [
         'clients-view'   => 'View clients',
         'clients-form'   => 'View client form',
         'clients-delete' => 'Delete clients',
     ],
-    'services' => [
+    'Services' => [
         'services-view'   => 'View services',
         'services-form'   => 'View service form',
         'services-delete' => 'Delete services',

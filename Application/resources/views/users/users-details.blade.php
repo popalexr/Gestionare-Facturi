@@ -5,9 +5,12 @@
             <div class="p-6">
                 <div class="flex items-center justify-between mb-6">
                     <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200">User Details</h2>
-                    <a href="{{ route('clients.form', ['id' => $user->id]) }}" class="bg-slate-700 hover:bg-slate-900 text-white font-bold py-2 px-4 rounded">
-                        Edit
-                    </a>
+
+                    @can('users-form')
+                        <a href="{{ route('users.form', ['id' => $user->id]) }}" class="bg-slate-700 hover:bg-slate-900 text-white font-bold py-2 px-4 rounded">
+                            Edit
+                        </a>
+                    @endcan
                 </div>
 
                 <div class="py-4 md:py-8">
@@ -58,9 +61,9 @@
                                     No permissions
                                 </dd>
                             @else
-                                @foreach($user->getPermissions() as $permission)
+                                @foreach($user->getPermissionsWithDescriptions() as $permission)
                                     <dd class="mt-1.5 inline-flex items-center rounded bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300">
-                                        {{ $permission->name }}
+                                        {{ $permission }}
                                     </dd>
                                 @endforeach
                             @endif

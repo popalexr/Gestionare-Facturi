@@ -150,21 +150,6 @@
          </div>
     </div>
 <script>
-    let interacted = false; 
-
-    function showInput(inputId) {
-        const inputs = document.querySelectorAll('#detailsGeneral, #contactPersons');
-        inputs.forEach(input => {
-            input.classList.add('hidden'); 
-        });
-
-        const selectedInput = document.getElementById(inputId);
-        if (selectedInput) {
-            selectedInput.classList.remove('hidden'); 
-        }
-    }
-</script>
-<script>
     let contacts = @json(old('contacts', []));
 </script>
 </x-app-layout>

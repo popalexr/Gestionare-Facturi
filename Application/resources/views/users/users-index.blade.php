@@ -13,10 +13,12 @@
                     <div class="mb-4 lg:mb-0">
                         <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">Users List</h3>
                     </div>
-
-                    <a href="{{ route('clients.form') }}" class="bg-slate-700 hover:bg-slate-900 text-white font-bold py-2 px-4 rounded">
-                        Add user
-                    </a>
+                    
+                    @can('users-form')
+                        <a href="{{ route('users.form') }}" class="bg-slate-700 hover:bg-slate-900 text-white font-bold py-2 px-4 rounded">
+                            Add user
+                        </a>
+                    @endcan
                 </div>
                 <!-- Table -->
                 <div class="flex flex-col mt-6">
@@ -69,22 +71,42 @@
                                                             View
                                                             <div class="tooltip-arrow" data-popper-arrow></div>
                                                         </div>
-
-                                                        <!-- Edit user details -->
-                                                        <a href="{{ route('clients.form', ['id' => $user->id]) }}" 
-                                                            class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-200"
-                                                            data-tooltip-target="tooltip-edit-{{ $user->id }}"
-                                                        >
-                                                            <i class="fa-solid fa-pen"></i>
-                                                        </a>
-                                                        <!-- Tooltip -->
-                                                        <div id="tooltip-edit-{{ $user->id }}" 
-                                                            role="tooltip" 
-                                                            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
-                                                        >
-                                                            Edit
-                                                            <div class="tooltip-arrow" data-popper-arrow></div>
-                                                        </div>
+                                                        
+                                                        @can('users-form')
+                                                            <!-- Edit user details -->
+                                                            <a href="{{ route('users.form', ['id' => $user->id]) }}" 
+                                                                class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-200 mr-2"
+                                                                data-tooltip-target="tooltip-edit-{{ $user->id }}"
+                                                            >
+                                                                <i class="fa-solid fa-pen"></i>
+                                                            </a>
+                                                            <!-- Tooltip -->
+                                                            <div id="tooltip-edit-{{ $user->id }}" 
+                                                                role="tooltip" 
+                                                                class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+                                                            >
+                                                                Edit
+                                                                <div class="tooltip-arrow" data-popper-arrow></div>
+                                                            </div>
+                                                        @endcan
+                                                        
+                                                        @can('users-delete')
+                                                            <!-- Delete user -->
+                                                            <button type="button"
+                                                                class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-200 show-delete-modal"
+                                                                data-tooltip-target="tooltip-delete-{{ $user->id }}"
+                                                                data-id="{{ $user->id }}"
+                                                            >
+                                                                <i class="fa-solid fa-trash-can"></i>
+                                                            </button>
+                                                            <!-- Tooltip -->
+                                                            <div id="tooltip-delete-{{ $user->id }}" 
+                                                                role="tooltip" 
+                                                                class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+                                                            >
+                                                                Delete
+                                                            </div>
+                                                        @endcan
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -98,5 +120,13 @@
                 </div>
             </div>
         </div>
+        @can('users-delete')
+            <div id="confirm-delete-modal-component-div">
+                <confirm-delete-modal-component 
+                    delete-url="{{ route('users.delete', ['id' => '{id}']) }}" 
+                    csrf-token="{{ csrf_token() }}">
+                </confirm-delete-modal-component>
+            </div>
+        @endcan
     </div>
 </x-app-layout>

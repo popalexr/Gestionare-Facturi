@@ -77,6 +77,28 @@ class User extends Authenticatable
     }
 
     /**
+     * This function returns an array of the user's permissions with descriptions.
+     * 
+     * @return array
+     */
+    public function getPermissionsWithDescriptions(): array
+    {
+        $user_permissions = $this->getPermissions();
+        $allPermissions = [];
+
+        foreach(config('permissions') as $permissions_list)
+        {
+            foreach($permissions_list as $permission => $description)
+            {
+                if(in_array($permission, $user_permissions))
+                    $allPermissions[$permission] = $description;
+            }
+        }
+
+        return $allPermissions;
+    }
+
+    /**
      * This function checks if the user has a specific permission.
      * 
      * @param string $permission
