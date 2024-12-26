@@ -54,13 +54,11 @@ Route::middleware('auth')->group(function () {
         Route::post('/form', [ServicesFormController::class, 'post'])->can('services-form');
     });
 
-    Route::middleware('auth')->group(function () {
         Route::prefix('settings')->group(function () {
             Route::get('/', SettingsController::class)->name('settings.index'); // Single-action
             Route::get('/details', SettingsDetails::class)->name('settings.details'); // Single-action
             Route::get('/form', SettingsFormController::class)->name('settings.form'); // Single-action
             Route::post('/form', [SettingsFormController::class, 'post'])->name('settings.form.post'); // For form submission
-        });
     });
 });
 
