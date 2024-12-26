@@ -78,7 +78,7 @@
 
                                                         <!-- Edit client details -->
                                                         <a href="{{ route('clients.form', ['id' => $client->id]) }}" 
-                                                            class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-200"
+                                                            class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-200 mr-2"
                                                             data-tooltip-target="tooltip-edit-{{ $client->id }}"
                                                         >
                                                             <i class="fa-solid fa-pen"></i>
@@ -93,15 +93,13 @@
                                                         </div>
 
                                                         <!-- Delete client -->
-                                                        <form action="{{ route('clients.delete', $client->id) }}" method="POST" style="display:inline; margin-left: 10px;">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-200" 
-                                                                    onclick="return confirm('Are you sure you want to delete this client?')" 
-                                                                    data-tooltip-target="tooltip-delete-{{ $client->id }}">
-                                                                <i class="fa-solid fa-trash"></i>
-                                                            </button>
-                                                        </form>
+                                                        <button type="button"
+                                                            class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-200 show-delete-modal"
+                                                            data-tooltip-target="tooltip-delete-{{ $client->id }}"
+                                                            data-id="{{ $client->id }}"
+                                                        >
+                                                            <i class="fa-solid fa-trash-can"></i>
+                                                        </button>
                                                         <!-- Tooltip -->
                                                         <div id="tooltip-delete-{{ $client->id }}" 
                                                             role="tooltip" 
@@ -122,5 +120,12 @@
                 </div>
             </div>
         </div>
+        <div id="confirm-delete-modal-component-div">
+            <confirm-delete-modal-component 
+                delete-url="{{ route('clients.delete', ['id' => '{id}']) }}" 
+                csrf-token="{{ csrf_token() }}">
+            </confirm-delete-modal-component>
+        </div>
     </div>
+
 </x-app-layout>

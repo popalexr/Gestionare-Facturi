@@ -7,6 +7,7 @@ use App\Http\Controllers\Clients\ClientDetails;
 use App\Http\Controllers\Services\ServicesController;
 use App\Http\Controllers\Services\ServicesDetails;
 use App\Http\Controllers\Clients\ClientsFormController;
+use App\Http\Controllers\Clients\DeleteClientController;
 use App\Http\Controllers\Users\UsersController;
 use App\Http\Controllers\Services\ServicesFormController;
 use App\Http\Controllers\Settings\SettingsController;
@@ -33,6 +34,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/details', ClientDetails::class)->name('clients.details'); 
         Route::get('/form', ClientsFormController::class)->name('clients.form');
         Route::post('/form', [ClientsFormController::class, 'post']);
+        Route::post('/delete', DeleteClientController::class)->name('clients.delete');
     });
 
     Route::prefix('users')->group(function () {
@@ -52,7 +54,6 @@ Route::middleware('auth')->group(function () {
             Route::get('/details', SettingsDetails::class)->name('settings.details'); // Single-action
             Route::get('/form', SettingsFormController::class)->name('settings.form'); // Single-action
             Route::post('/form', [SettingsFormController::class, 'post'])->name('settings.form.post'); // For form submission
-            Route::delete('/clients/{id}', [ClientsFormController::class, 'delete'])->name('clients.delete');
         });
     });
 });

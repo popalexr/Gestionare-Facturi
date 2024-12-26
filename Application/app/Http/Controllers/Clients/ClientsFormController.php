@@ -14,7 +14,7 @@ class ClientsFormController extends Controller
 {
     private int $id = 0;
 
-    public function __invoke(Request $request) : View
+    public function __invoke(Request $request): View|RedirectResponse
     {
         $this->id = $request->get('id', 0);
 
@@ -24,7 +24,7 @@ class ClientsFormController extends Controller
 
         $client = $this->getClientDetails();
 
-        if (blank($client)) {
+        if (blank($client) || !blank($client['client']->deleted_at)) { // If the client doesn't exist or is deleted
             return redirect()->route('clients.index')->with('error', 'Client not found.');
         }
 
@@ -58,31 +58,6 @@ class ClientsFormController extends Controller
         DB::commit();
 
         return redirect()->route('clients.details', ['id' => $this->id])->with('success', 'Client saved successfully.');
-    }
-
-    public function delete(int $id) : RedirectResponse
-    {
-        // Begin a transaction to ensure consistency
-        DB::beginTransaction();
-
-        try {
-            // Delete the client's contacts
-            ClientsContacts::where('client_id', $id)->delete();
-
-            // Delete the client
-            $client = Clients::findOrFail($id);
-            $client->delete();
-
-            // Commit the transaction
-            DB::commit();
-
-            return redirect()->route('clients.index')->with('success', 'Client deleted successfully.');
-        } catch (\Exception $e) {
-            // Rollback the transaction in case of an error
-            DB::rollBack();
-
-            return redirect()->route('clients.index')->with('error', 'Failed to delete client: ' . $e->getMessage());
-        }
     }
 
     private function getClientDetails() : array|null
@@ -130,9 +105,11 @@ class ClientsFormController extends Controller
         ];
     }
 
-    private function clientExists($id)
+    private function clientExists($id): bool
     {
-        return Clients::where('id', $id)->exists();
+        $client = Clients::find($id);
+
+        return !(blank($client) || !blank($client->deleted_at)); // If the client doesn't exist or is deleted return false
     }
 
     private function addNewClient($request)

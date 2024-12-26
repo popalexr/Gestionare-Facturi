@@ -17,7 +17,7 @@ class ClientDetails extends Controller
 
         $client = $this->getClientDetails();
         
-        if (blank($client))
+        if (blank($client) || !blank($client->deleted_at)) // If the client doesn't exist or is deleted
             return redirect()->route('clients.index')->with('error', 'This client doesn\'t exist.'); // Redirect to the clients index
         
         $contacts = $this->getClientContacts();

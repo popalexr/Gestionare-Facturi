@@ -19,7 +19,9 @@ class ClientsController extends Controller
      */
     public function __invoke(Request $request) : View
     {
-        $clients = Clients::select(['id', 'name', 'client_type', 'cui'])->paginate(10); // Get all clients from the database
+        $clients = Clients::select(['id', 'name', 'client_type', 'cui'])
+            ->whereNull('deleted_at')
+            ->paginate(10); // Get all clients from the database
         
         return view('clients.clients-index', compact('clients')); // Return the view with the clients
     }
