@@ -10,7 +10,7 @@ class UsersController extends Controller
 {
     public function __invoke(Request $request)
     {
-        $users = User::all();
+        $users = User::whereNull('deleted_at')->paginate(10);
 
         return view('users.users-index')->with([
             'users' => $users

@@ -9,11 +9,11 @@ use App\Http\Controllers\Services\ServicesDetails;
 use App\Http\Controllers\Clients\ClientsFormController;
 use App\Http\Controllers\Clients\DeleteClientController;
 use App\Http\Controllers\Users\UsersController;
+use App\Http\Controllers\Users\UserDetailsController;
 use App\Http\Controllers\Services\ServicesFormController;
 use App\Http\Controllers\Settings\SettingsController;
 use App\Http\Controllers\Settings\SettingsDetails;
 use App\Http\Controllers\Settings\SettingsFormController;
-
 
 Route::get('/', function () {
     return view('dashboard');
@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('users')->group(function () {
         Route::get('/', UsersController::class)->name('users.index');
+        Route::get('/details', UserDetailsController::class)->name('users.details');
     });
     
     Route::prefix('services')->group(function () {
