@@ -54,7 +54,7 @@ class User extends Authenticatable
      */
     public function isOnline(): bool
     {
-        return cache()->has('last-user-activity-' . $this->id) && now()->diffInSeconds(cache()->get('last-user-activity-' . $this->id)) < 300;
+        return cache()->has('last-user-activity-' . $this->id) && abs(now()->diffInSeconds(cache()->get('last-user-activity-' . $this->id))) < 300;
     }
 
     /**
