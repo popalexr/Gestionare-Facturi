@@ -73,7 +73,18 @@ class User extends Authenticatable
      */
     public function getPermissions(): array
     {
-        return json_decode($this->permissions, true);
+        return json_decode($this->permissions) ?? [];
+    }
+
+    /**
+     * This function checks if the user has a specific permission.
+     * 
+     * @param string $permission
+     * @return bool
+     */
+    public function hasPermission(string $permission): bool
+    {
+        return in_array($permission, $this->getPermissions());
     }
 
     /**

@@ -30,23 +30,23 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::prefix('clients')->group(function () {
-        Route::get('/', ClientsController::class)->name('clients.index'); 
-        Route::get('/details', ClientDetails::class)->name('clients.details'); 
-        Route::get('/form', ClientsFormController::class)->name('clients.form');
-        Route::post('/form', [ClientsFormController::class, 'post']);
-        Route::post('/delete', DeleteClientController::class)->name('clients.delete');
+        Route::get('/', ClientsController::class)->name('clients.index')->can('clients-view'); 
+        Route::get('/details', ClientDetails::class)->name('clients.details')->can('clients-view');
+        Route::get('/form', ClientsFormController::class)->name('clients.form')->can('clients-form');
+        Route::post('/form', [ClientsFormController::class, 'post'])->can('clients-form');
+        Route::post('/delete', DeleteClientController::class)->name('clients.delete')->can('clients-delete');
     });
 
     Route::prefix('users')->group(function () {
-        Route::get('/', UsersController::class)->name('users.index');
-        Route::get('/details', UserDetailsController::class)->name('users.details');
+        Route::get('/', UsersController::class)->name('users.index')->can('users-view');
+        Route::get('/details', UserDetailsController::class)->name('users.details')->can('users-view');
     });
     
     Route::prefix('services')->group(function () {
-        Route::get('/', ServicesController::class)->name('services.index'); 
-        Route::get('/details', ServicesDetails::class)->name('services.details'); // Added route for service details
-        Route::get('/form', ServicesFormController::class)->name('services.form');
-        Route::post('/form', [ServicesFormController::class, 'post']);
+        Route::get('/', ServicesController::class)->name('services.index')->can('services-view'); 
+        Route::get('/details', ServicesDetails::class)->name('services.details')->can('services-view');
+        Route::get('/form', ServicesFormController::class)->name('services.form')->can('services-form');
+        Route::post('/form', [ServicesFormController::class, 'post'])->can('services-form');
     });
 
     Route::middleware('auth')->group(function () {
