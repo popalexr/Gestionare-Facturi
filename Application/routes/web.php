@@ -16,6 +16,7 @@ use App\Http\Controllers\Settings\SettingsController;
 use App\Http\Controllers\Settings\SettingsDetails;
 use App\Http\Controllers\Settings\SettingsFormController;
 use App\Http\Controllers\Users\DeleteUserController;
+use App\Http\Controllers\Invoices\InvoicesController;
 
 Route::get('/', function () {
     return view('dashboard');
@@ -46,6 +47,10 @@ Route::middleware('auth')->group(function () {
         Route::post('/form', [UsersFormController::class, 'post'])->can('users-form');
         Route::post('/delete', DeleteUserController::class)->name('users.delete')->can('users-delete');
     });
+
+    Route::prefix('invoices')->group(function () {
+        Route::get('/', InvoicesController::class)->name('invoices.index');
+    });
     
     Route::prefix('services')->group(function () {
         Route::get('/', ServicesController::class)->name('services.index')->can('services-view'); 
@@ -54,11 +59,11 @@ Route::middleware('auth')->group(function () {
         Route::post('/form', [ServicesFormController::class, 'post'])->can('services-form');
     });
 
-        Route::prefix('settings')->group(function () {
-            Route::get('/', SettingsController::class)->name('settings.index'); // Single-action
-            Route::get('/details', SettingsDetails::class)->name('settings.details'); // Single-action
-            Route::get('/form', SettingsFormController::class)->name('settings.form'); // Single-action
-            Route::post('/form', [SettingsFormController::class, 'post'])->name('settings.form.post'); // For form submission
+    Route::prefix('settings')->group(function () {
+        Route::get('/', SettingsController::class)->name('settings.index'); // Single-action
+        Route::get('/details', SettingsDetails::class)->name('settings.details'); // Single-action
+        Route::get('/form', SettingsFormController::class)->name('settings.form'); // Single-action
+        Route::post('/form', [SettingsFormController::class, 'post'])->name('settings.form.post'); // For form submission
     });
 });
 
