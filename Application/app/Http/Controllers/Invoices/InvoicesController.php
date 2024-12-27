@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Clients;
 use App\Models\Invoices;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 
 class InvoicesController extends Controller
 {
@@ -37,7 +36,7 @@ class InvoicesController extends Controller
                 'id' => $invoice->id,
                 'client_name' => $this->getClientName($invoice->client_id),
                 'created_at' => $invoice->created_at->format('d M Y H:i'),
-                'value' => $this->getInvoiceValue($invoice),
+                'value' => $invoice->value,
             ];
 
             $result[] = (object)$invoice_data;
@@ -61,23 +60,5 @@ class InvoicesController extends Controller
         }
 
         return $client->name;
-    }
-
-    /**
-     * Get invoice value
-     * 
-     * @param Invoices $invoice
-     * @return float
-     */
-    public function getInvoiceValue(Invoices $invoice): float
-    {
-        $products = $invoice->getProducts();
-        $value = 0;
-
-        foreach ($products as $product) {
-            $value += ($product->price + $product->price * $product->vat) * $product->quantity;
-        }
-
-        return $value;
     }
 }

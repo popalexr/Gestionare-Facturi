@@ -18,4 +18,20 @@ class Invoices extends Model
     {
         return $this->hasMany(InvoiceProducts::class, 'invoice_id', 'id')->get();
     }
+
+    /**
+     * Get client name for the invoice.
+     * 
+     * @return string
+     */
+    public function getClientName(): string
+    {
+        $client = Clients::find($this->client_id);
+
+        if (blank($client)) {
+            return 'Unknown';
+        }
+
+        return $client->name;
+    }
 }

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Clients') }}
+            {{ __('Invoices') }}
         </h2>
     </x-slot>
 
@@ -14,7 +14,7 @@
                         <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">Invoices List</h3>
                     </div>
 
-                    <a href="{{ route('clients.form') }}" class="bg-slate-700 hover:bg-slate-900 text-white font-bold py-2 px-4 rounded">
+                    <a href="{{ route('invoices.form') }}" class="bg-slate-700 hover:bg-slate-900 text-white font-bold py-2 px-4 rounded">
                         Create new invoice
                     </a>
                 </div>

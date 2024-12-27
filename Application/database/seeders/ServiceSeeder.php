@@ -17,7 +17,7 @@ class ServiceSeeder extends Seeder
         Services::insert([
             [
                 'name' => 'Web Hosting',
-                'vat_id' => 1,
+                'vat' => 9,
                 'price' => 49.99,
                 'currency' => 'eur',
                 'description' => 'Premium web hosting package with unlimited bandwidth.',
@@ -26,7 +26,7 @@ class ServiceSeeder extends Seeder
             ],
             [
                 'name' => 'SEO Optimization',
-                'vat_id' => 2,
+                'vat' => 9,
                 'price' => 150.00,
                 'currency' => 'usd',
                 'description' => 'Professional SEO services to rank higher on search engines.',
@@ -35,7 +35,7 @@ class ServiceSeeder extends Seeder
             ],
             [
                 'name' => 'Cloud Storage',
-                'vat_id' => null,
+                'vat' => 10,
                 'price' => 20.00,
                 'currency' => 'ron',
                 'description' => 'Secure cloud storage for your files and documents.',

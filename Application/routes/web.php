@@ -17,6 +17,7 @@ use App\Http\Controllers\Settings\SettingsDetails;
 use App\Http\Controllers\Settings\SettingsFormController;
 use App\Http\Controllers\Users\DeleteUserController;
 use App\Http\Controllers\Invoices\InvoicesController;
+use App\Http\Controllers\Invoices\InvoicesFormController;
 
 Route::get('/', function () {
     return view('dashboard');
@@ -50,6 +51,8 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('invoices')->group(function () {
         Route::get('/', InvoicesController::class)->name('invoices.index');
+        Route::get('/form', InvoicesFormController::class)->name('invoices.form');
+        Route::post('/form', [InvoicesFormController::class, 'post']);
     });
     
     Route::prefix('services')->group(function () {
@@ -64,6 +67,11 @@ Route::middleware('auth')->group(function () {
         Route::get('/details', SettingsDetails::class)->name('settings.details'); // Single-action
         Route::get('/form', SettingsFormController::class)->name('settings.form'); // Single-action
         Route::post('/form', [SettingsFormController::class, 'post'])->name('settings.form.post'); // For form submission
+    });
+
+    Route::prefix('api')->group(function () {
+        Route::get('/get-clients', \App\Http\Controllers\API\GetClientsApiController::class)->name('api.get-clients');
+        Route::get('/get-services', \App\Http\Controllers\API\GetServicesApiController::class)->name('api.get-services');
     });
 });
 
