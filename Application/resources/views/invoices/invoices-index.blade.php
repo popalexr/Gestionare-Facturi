@@ -38,6 +38,9 @@
                                             <th scope="col" class="p-4 text-xs font-medium tracking-wider text-center text-gray-500 uppercase dark:text-white">
                                                 Created at
                                             </th>
+                                            <th scope="col" class="p-4 text-xs font-medium tracking-wider text-center text-gray-500 uppercase dark:text-white">
+                                                SPV Status
+                                            </th>
                                             <th scope="col" class="p-4 text-xs font-medium tracking-wider text-right text-gray-500 uppercase dark:text-white">
                                                 Action
                                             </th>
@@ -65,6 +68,18 @@
                                                     <td class="p-4 text-center text-sm text-gray-900 dark:text-white">
                                                         {{ $invoice->created_at }}
                                                     </td>
+                                                    <td class="p-4 text-center text-sm text-gray-900 dark:text-white">
+                                                        @if($invoice->spv_status == 'approved')
+                                                            <span class="px-2 py-1 text-xs font-semibold text-green-800 bg-green-200 rounded-full dark:bg-green-700 dark:text-green-100">
+                                                        @elseif($invoice->spv_status == 'pending')
+                                                            <span class="px-2 py-1 text-xs font-semibold text-yellow-800 bg-yellow-200 rounded-full dark:bg-yellow-700 dark:text-yellow-100">
+                                                        @elseif($invoice->spv_status == 'rejected')
+                                                            <span class="px-2 py-1 text-xs font-semibold text-red-800 bg-red-200 rounded-full dark:bg-red-700 dark:text-red-100">
+                                                        @else
+                                                            <span class="px-2 py-1 text-xs font-semibold text-gray-800 bg-gray-200 rounded-full dark:bg-gray-700 dark:text-gray-100">
+                                                        @endif
+                                                                {{ config('spv.status.' . $invoice->spv_status) }}
+                                                            </span>
                                                     <td class="p-4 text-sm font-medium text-right dark:text-white">
                                                         <!-- View invoice details -->
                                                         <a href="{{ route('invoices.details', ['id' => $invoice->id]) }}" 

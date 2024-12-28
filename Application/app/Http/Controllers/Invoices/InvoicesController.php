@@ -38,6 +38,7 @@ class InvoicesController extends Controller
                 'currency' => currency_symbol($invoice->currency),
                 'created_at' => $invoice->created_at->format('d M Y H:i'),
                 'value' => $invoice->value,
+                'spv_status' => $invoice->spv_status,
             ];
 
             $result[] = (object)$invoice_data;
