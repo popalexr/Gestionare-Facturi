@@ -16,4 +16,12 @@ return [
         'services-form'   => 'View service form',
         'services-delete' => 'Delete services',
     ],
+    'Invoices' => [
+        'invoices-view'   => 'View invoices',
+        'invoices-form'   => 'View invoice form',
+        'invoices-delete' => 'Delete invoices',
+    ],
+    'Settings' => [
+        'settings-update' => 'Update settings',
+    ],
 ];

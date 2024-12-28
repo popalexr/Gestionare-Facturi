@@ -49,11 +49,12 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::prefix('invoices')->group(function () {
-        Route::get('/', InvoicesController::class)->name('invoices.index');
-        Route::get('/details', InvoicesDetailsController::class)->name('invoices.details');
-        Route::get('/print', \App\Http\Controllers\Invoices\InvoicePrintController::class)->name('invoices.print');
-        Route::get('/form', InvoicesFormController::class)->name('invoices.form');
-        Route::post('/form', [InvoicesFormController::class, 'post']);
+        Route::get('/', InvoicesController::class)->name('invoices.index')->can('invoices-view');
+        Route::get('/details', InvoicesDetailsController::class)->name('invoices.details')->can('invoices-view');
+        Route::get('/print', \App\Http\Controllers\Invoices\InvoicePrintController::class)->name('invoices.print')->can('invoices-view');
+        Route::get('/form', InvoicesFormController::class)->name('invoices.form')->can('invoices-form');
+        Route::post('/form', [InvoicesFormController::class, 'post'])->can('invoices-form');
+        // TODO: Add delete invoice route
     });
     
     Route::prefix('services')->group(function () {
@@ -64,8 +65,8 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::prefix('settings')->group(function () {
-        Route::get('/', SettingsController::class)->name('settings.index');
-        Route::post('/', [SettingsController::class, 'post']);
+        Route::get('/', SettingsController::class)->name('settings.index')->can('settings-update');
+        Route::post('/', [SettingsController::class, 'post'])->can('settings-update');
     });
 
     Route::prefix('api')->group(function () {
