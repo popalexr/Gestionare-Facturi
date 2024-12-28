@@ -13,8 +13,6 @@ use App\Http\Controllers\Users\UserDetailsController;
 use App\Http\Controllers\Users\UsersFormController;
 use App\Http\Controllers\Services\ServicesFormController;
 use App\Http\Controllers\Settings\SettingsController;
-use App\Http\Controllers\Settings\SettingsDetails;
-use App\Http\Controllers\Settings\SettingsFormController;
 use App\Http\Controllers\Users\DeleteUserController;
 use App\Http\Controllers\Invoices\InvoicesController;
 use App\Http\Controllers\Invoices\InvoicesDetailsController;
@@ -66,10 +64,8 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::prefix('settings')->group(function () {
-        Route::get('/', SettingsController::class)->name('settings.index'); // Single-action
-        Route::get('/details', SettingsDetails::class)->name('settings.details'); // Single-action
-        Route::get('/form', SettingsFormController::class)->name('settings.form'); // Single-action
-        Route::post('/form', [SettingsFormController::class, 'post'])->name('settings.form.post'); // For form submission
+        Route::get('/', SettingsController::class)->name('settings.index');
+        Route::post('/', [SettingsController::class, 'post']);
     });
 
     Route::prefix('api')->group(function () {
