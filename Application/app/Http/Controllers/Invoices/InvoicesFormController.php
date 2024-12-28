@@ -9,6 +9,7 @@ use App\Models\InvoiceProducts;
 use App\Models\Invoices;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class InvoicesFormController extends Controller
@@ -154,6 +155,7 @@ class InvoicesFormController extends Controller
     {
         $id = Invoices::insertGetId([
             'client_id' => $request->get('client_id'),
+            'created_by' => Auth::user()->id,
             'currency' => $request->get('currency'),
             'created_at' => now(),
         ]);

@@ -63,4 +63,20 @@ class Invoices extends Model
             'country'   => $client->country,
         ];
     }
+
+    /**
+     * Get the user that created the invoice.
+     * 
+     * @return User|null - if the user is not found, return null
+     */
+    public function getAuthorDetails(): User|null
+    {
+        $user = User::find($this->created_by);
+
+        if (blank($user)) {
+            return null;
+        }
+
+        return $user;
+    }
 }
