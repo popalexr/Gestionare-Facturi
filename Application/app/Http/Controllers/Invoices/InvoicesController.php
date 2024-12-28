@@ -27,7 +27,7 @@ class InvoicesController extends Controller
      * @param $invoices
      * @return object
      */
-    public function parseInvoices($invoices): object
+    private function parseInvoices($invoices): object
     {
         $result = [];
 
@@ -35,6 +35,7 @@ class InvoicesController extends Controller
             $invoice_data = [
                 'id' => $invoice->id,
                 'client_name' => $this->getClientName($invoice->client_id),
+                'currency' => currency_symbol($invoice->currency),
                 'created_at' => $invoice->created_at->format('d M Y H:i'),
                 'value' => $invoice->value,
             ];

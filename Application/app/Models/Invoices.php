@@ -34,4 +34,33 @@ class Invoices extends Model
 
         return $client->name;
     }
+
+    /**
+     * Get client details for the invoice.
+     * 
+     * @return object
+     */
+    public function getClientDetails(): object
+    {
+        $client = Clients::find($this->client_id);
+
+        if (blank($client)) {
+            return (object)[
+                'name'    => 'Unknown',
+                'email'   => 'Unknown',
+                'cui'     => 'Unknown',
+                'address' => 'Unknown',
+            ];
+        }
+
+        return (object)[
+            'name'      => $client->name,
+            'email'     => $client->email,
+            'cui'       => $client->cui,
+            'address'   => $client->address,
+            'city'      => $client->city,
+            'county'    => $client->county,
+            'country'   => $client->country,
+        ];
+    }
 }

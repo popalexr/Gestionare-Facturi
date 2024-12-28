@@ -60,13 +60,59 @@
                                                         {{ $invoice->client_name }}
                                                     </td>
                                                     <td class="p-4 text-center text-sm text-gray-900 dark:text-white">
-                                                        {{ $invoice->value }}
+                                                        {{ $invoice->value }} {{ $invoice->currency }}
                                                     </td>
                                                     <td class="p-4 text-center text-sm text-gray-900 dark:text-white">
                                                         {{ $invoice->created_at }}
                                                     </td>
                                                     <td class="p-4 text-sm font-medium text-right dark:text-white">
-                                                        
+                                                        <!-- View invoice details -->
+                                                        <a href="{{ route('invoices.details', ['id' => $invoice->id]) }}" 
+                                                            class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-200 mr-2"
+                                                            data-tooltip-target="tooltip-view-{{ $invoice->id }}"
+                                                        >
+                                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                                        </a>
+                                                        <!-- Tooltip -->
+                                                        <div id="tooltip-view-{{ $invoice->id }}" 
+                                                            role="tooltip" 
+                                                            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+                                                        >
+                                                            View
+                                                            <div class="tooltip-arrow" data-popper-arrow></div>
+                                                        </div>
+
+                                                        <!-- Edit invoice details -->
+                                                        <a href="{{ route('invoices.form', ['id' => $invoice->id]) }}" 
+                                                            class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-200 mr-2"
+                                                            data-tooltip-target="tooltip-edit-{{ $invoice->id }}"
+                                                        >
+                                                            <i class="fa-solid fa-pen"></i>
+                                                        </a>
+                                                        <!-- Tooltip -->
+                                                        <div id="tooltip-edit-{{ $invoice->id }}" 
+                                                            role="tooltip" 
+                                                            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+                                                        >
+                                                            Edit
+                                                            <div class="tooltip-arrow" data-popper-arrow></div>
+                                                        </div>
+
+                                                        <!-- Delete invoice -->
+                                                        <button type="button"
+                                                            class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-200 show-delete-modal"
+                                                            data-tooltip-target="tooltip-delete-{{ $invoice->id }}"
+                                                            data-id="{{ $invoice->id }}"
+                                                        >
+                                                            <i class="fa-solid fa-trash-can"></i>
+                                                        </button>
+                                                        <!-- Tooltip -->
+                                                        <div id="tooltip-delete-{{ $invoice->id }}" 
+                                                            role="tooltip" 
+                                                            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+                                                        >
+                                                            Delete
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -79,6 +125,12 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div id="confirm-delete-modal-component-div">
+            <confirm-delete-modal-component 
+                delete-url="{{ route('clients.delete', ['id' => '{id}']) }}" 
+                csrf-token="{{ csrf_token() }}">
+            </confirm-delete-modal-component>
         </div>
     </div>
 

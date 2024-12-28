@@ -6,7 +6,6 @@ use App\Models\Invoices;
 use App\Services\CurrencyConverter;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Support\Facades\Log;
 
 class CalculateInvoiceValue implements ShouldQueue
 {
@@ -28,9 +27,6 @@ class CalculateInvoiceValue implements ShouldQueue
         $invoice_id = $event->invoice_id;
 
         $invoice = Invoices::find($invoice_id);
-
-        Log::error('Invoice ID: ' . $invoice_id);
-        Log::error('Invoice: ' . $invoice);
 
         if(blank($invoice)) {
             return;
@@ -56,8 +52,6 @@ class CalculateInvoiceValue implements ShouldQueue
             {
                 $product->price = CurrencyConverter::convert($product->price, $product->currency, $invoice->currency);
             }
-
-            Log::info('Product price: ' . $product->price);
 
             $value += ($product->price + $product->price * ($product->vat / 100) ) * $product->quantity;
         }
