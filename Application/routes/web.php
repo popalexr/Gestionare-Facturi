@@ -17,6 +17,7 @@ use App\Http\Controllers\Settings\SettingsDetails;
 use App\Http\Controllers\Settings\SettingsFormController;
 use App\Http\Controllers\Users\DeleteUserController;
 use App\Http\Controllers\Invoices\InvoicesController;
+use App\Http\Controllers\Invoices\InvoicesDetailsController;
 use App\Http\Controllers\Invoices\InvoicesFormController;
 
 Route::get('/', function () {
@@ -51,6 +52,8 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('invoices')->group(function () {
         Route::get('/', InvoicesController::class)->name('invoices.index');
+        Route::get('/details', InvoicesDetailsController::class)->name('invoices.details');
+        Route::get('/print', \App\Http\Controllers\Invoices\InvoicePrintController::class)->name('invoices.print');
         Route::get('/form', InvoicesFormController::class)->name('invoices.form');
         Route::post('/form', [InvoicesFormController::class, 'post']);
     });
