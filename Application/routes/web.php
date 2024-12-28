@@ -75,4 +75,9 @@ Route::middleware('auth')->group(function () {
     });
 });
 
+Route::prefix('anaf')->group(function () {
+    Route::get('/authorize', [\App\Http\Controllers\Anaf\AnafOAuthController::class, 'authorize'])->name('anaf.authorize');
+    Route::get('/callback', [\App\Http\Controllers\Anaf\AnafOAuthController::class, 'callback'])->name('anaf.callback');
+});
+
 require __DIR__.'/auth.php';
