@@ -11,5 +11,14 @@ class Clients extends Model
 
     protected $table = 'clients';
 
-    
+    /**
+     * Function to get all invoices of a client
+     * 
+     * @param int $limitPerPage
+     * @return array
+     */
+    public function getInvoices(int $limitPerPage)
+    {
+        return $this->hasMany(Invoices::class, 'client_id', 'id')->orderBy('created_at', 'DESC')->paginate($limitPerPage);
+    }
 }

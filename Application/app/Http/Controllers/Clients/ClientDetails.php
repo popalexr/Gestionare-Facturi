@@ -21,8 +21,11 @@ class ClientDetails extends Controller
             return redirect()->route('clients.index')->with('error', 'This client doesn\'t exist.'); // Redirect to the clients index
         
         $contacts = $this->getClientContacts();
+        
+        $invoices = $client->getInvoices(10); // Get the invoices of the client
+        $invoices->appends($request->query()); // Append the query parameters to the pagination links
 
-        return view('clients.clients-details', compact('client', 'contacts')); // Return the view with the client details
+        return view('clients.clients-details', compact('client', 'contacts', 'invoices')); // Return the view with the client details
     }
 
     private function getClientDetails()
