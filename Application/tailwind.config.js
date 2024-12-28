@@ -21,6 +21,8 @@ export default {
 
     plugins: [
         forms,
-        flowbitePlugin,
+        flowbitePlugin({
+            charts: true,
+        }),
     ],
 };

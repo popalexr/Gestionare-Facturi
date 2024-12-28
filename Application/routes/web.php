@@ -8,6 +8,7 @@ use App\Http\Controllers\Services\ServicesController;
 use App\Http\Controllers\Services\ServicesDetails;
 use App\Http\Controllers\Clients\ClientsFormController;
 use App\Http\Controllers\Clients\DeleteClientController;
+use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Users\UsersController;
 use App\Http\Controllers\Users\UserDetailsController;
 use App\Http\Controllers\Users\UsersFormController;
@@ -18,13 +19,9 @@ use App\Http\Controllers\Invoices\InvoicesController;
 use App\Http\Controllers\Invoices\InvoicesDetailsController;
 use App\Http\Controllers\Invoices\InvoicesFormController;
 
-Route::get('/', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified']);
+Route::get('/', DashboardController::class)->middleware(['auth', 'verified']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', DashboardController::class)->middleware(['auth', 'verified'])->name('dashboard');
 
 
 Route::middleware('auth')->group(function () {
