@@ -82,6 +82,22 @@
                     </div>
                 </div>
             </div>
+
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-12">
+                <div class="w-full p-6 bg-white dark:bg-gray-800 rounded-md shadow-md">
+                    <h3 class="mb-8 text-xl font-bold text-gray-900 dark:text-white">SPV details</h3>
+                    <!-- Input fields -->
+                    <div class="w-full">
+                        <div class="space-y-6 mb-4">
+                            <!-- Enable SPV -->
+                            <div class="flex mb-4 py-4">
+                                <input id="spv_enabled" @if(old('spv_enabled', settings()->get('spv_enabled') === 'on')) checked @endif name="spv_enabled" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="spv_enabled" class="ms-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300">Enable SPV</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="mt-6 w-full">
                 <div class="flex justify-center">
                     <button type="submit" class="py-1 px-3 border-4 border-gray-300 rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">

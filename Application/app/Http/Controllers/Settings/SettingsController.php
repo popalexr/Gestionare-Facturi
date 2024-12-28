@@ -18,6 +18,7 @@ class SettingsController extends Controller
         'company_country',
         'company_county',
         'company_cui',
+        'spv_enabled',
     ];
 
     /**
@@ -59,6 +60,7 @@ class SettingsController extends Controller
             'company_country'   => 'string|max:255|nullable',
             'company_county'    => 'string|max:255|nullable',
             'company_cui'       => 'string|max:32|nullable',
+            'spv_enabled'       => 'string|in:on|nullable',
         ];
     }
 
@@ -98,12 +100,8 @@ class SettingsController extends Controller
      */
     private function saveSettings(Request $request): void
     {
-        foreach($request->all() as $key => $value) {
-            if(!in_array($key, $this->whitelist_keys)) {
-                continue;
-            }
-
-            settings()->set($key, $value);
+        foreach($this->whitelist_keys as $key) {
+            settings()->set($key, $request->input($key));
         }
     }
 }

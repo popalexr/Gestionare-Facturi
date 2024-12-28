@@ -30,11 +30,17 @@ class Settings
      */
     public function get(string $key): string|null
     {
+        if(cache()->has('settings_' . $key)) {
+            return cache()->get('settings_' . $key);
+        }
+
         $setting = ModelSettings::where('key', $key)->first();
 
         if(blank($setting)) {
             return null;
         }
+
+        cache()->put('settings_' . $key, $setting->value, 60 * 60 * 24); // Store the setting in cache for 24 hours
 
         return $setting->value;
     }
@@ -55,9 +61,12 @@ class Settings
         if(blank($value))
         {
             ModelSettings::where('key', $key)->delete();
+            cache()->forget('settings_' . $key);
 
             return;
         }
+
+        cache()->put('settings_' . $key, $value, 60 * 60 * 24); // Store the setting in cache for 24 hours
 
         if(!blank($setting))
         {
