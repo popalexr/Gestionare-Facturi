@@ -28,7 +28,7 @@ class MakeAdminCommand extends Command
     public function handle()
     {
         // Default admin credentials
-        $email = "admin@admin.com";
+        $email = "admin@example.com";
         $password = "admin";
 
         // Check if admin account already exists
@@ -44,6 +44,7 @@ class MakeAdminCommand extends Command
             'name' => 'Admin',
             'email' => $email,
             'password' => bcrypt($password),
+            'role' => 'admin',
         ]);
 
         $this->info('Admin account created');
