@@ -15,7 +15,7 @@
                     <path d="M 14 22 h20 v2 h-20zM 14 26 h20 v2 h-20zM 14 30 h20 v2 h-20z" fill="#FFF"/>
             </g>
           </svg>
-    <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Gestiunea Facturilor</span>
+    <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">{{ config('app.name') }}</span>
 </a>
         <form action="#" method="GET" class="hidden lg:block lg:pl-3.5">
           <label for="topbar-search" class="sr-only">Search</label>

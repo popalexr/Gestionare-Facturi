@@ -3,9 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Clients\ClientsController; 
-use App\Http\Controllers\Clients\ClientDetails;
+use App\Http\Controllers\Clients\ClientDetailsController;
 use App\Http\Controllers\Services\ServicesController;
-use App\Http\Controllers\Services\ServicesDetails;
+use App\Http\Controllers\Services\ServicesDetailsController;
 use App\Http\Controllers\Clients\ClientsFormController;
 use App\Http\Controllers\Clients\DeleteClientController;
 use App\Http\Controllers\Dashboard\DashboardController;
@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('clients')->group(function () {
         Route::get('/', ClientsController::class)->name('clients.index')->can('clients-view'); 
-        Route::get('/details', ClientDetails::class)->name('clients.details')->can('clients-view');
+        Route::get('/details', ClientDetailsController::class)->name('clients.details')->can('clients-view');
         Route::get('/form', ClientsFormController::class)->name('clients.form')->can('clients-form');
         Route::post('/form', [ClientsFormController::class, 'post'])->can('clients-form');
         Route::post('/delete', DeleteClientController::class)->name('clients.delete')->can('clients-delete');
@@ -58,7 +58,7 @@ Route::middleware('auth')->group(function () {
     
     Route::prefix('services')->group(function () {
         Route::get('/', ServicesController::class)->name('services.index')->can('services-view'); 
-        Route::get('/details', ServicesDetails::class)->name('services.details')->can('services-view');
+        Route::get('/details', ServicesDetailsController::class)->name('services.details')->can('services-view');
         Route::get('/form', ServicesFormController::class)->name('services.form')->can('services-form');
         Route::post('/form', [ServicesFormController::class, 'post'])->can('services-form');
     });

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Services;
 use Illuminate\Http\Request;
 
-class ServicesDetails extends Controller
+class ServicesDetailsController extends Controller
 {
     public function __invoke(Request $request)
     {

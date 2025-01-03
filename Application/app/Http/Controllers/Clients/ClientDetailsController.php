@@ -7,7 +7,7 @@ use App\Models\Clients;
 use App\Models\ClientsContacts;
 use Illuminate\Http\Request;
 
-class ClientDetails extends Controller
+class ClientDetailsController extends Controller
 {
     private int $id;
 
