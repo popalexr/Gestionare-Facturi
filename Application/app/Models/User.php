@@ -128,4 +128,21 @@ class User extends Authenticatable
     {
         return $this->hasMany(Invoices::class, 'created_by')->get();
     }
+
+    /**
+     * Get the best seller user.
+     * 
+     * @param int $limit
+     * 
+     * @return object
+     */
+    public static function getBestSeller(int $limit = 1): object
+    {
+        return User::selectRaw('users.id, users.name, sum(invoices.value) as total')
+            ->join('invoices', 'users.id', '=', 'invoices.created_by')
+            ->groupBy('users.id', 'users.name')
+            ->orderBy('total', 'desc')
+            ->limit($limit)
+            ->get();
+    }
 }
