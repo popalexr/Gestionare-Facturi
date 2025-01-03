@@ -9,6 +9,7 @@ use App\Http\Controllers\Services\ServicesDetails;
 use App\Http\Controllers\Clients\ClientsFormController;
 use App\Http\Controllers\Clients\DeleteClientController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Invoices\ExportSpvController;
 use App\Http\Controllers\Users\UsersController;
 use App\Http\Controllers\Users\UserDetailsController;
 use App\Http\Controllers\Users\UsersFormController;
@@ -50,6 +51,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/details', InvoicesDetailsController::class)->name('invoices.details')->can('invoices-view');
         Route::get('/print', \App\Http\Controllers\Invoices\InvoicePrintController::class)->name('invoices.print')->can('invoices-view');
         Route::get('/form', InvoicesFormController::class)->name('invoices.form')->can('invoices-form');
+        Route::get('/export-spv', ExportSpvController::class)->name('invoices.export-spv')->can('invoices-view');
         Route::post('/form', [InvoicesFormController::class, 'post'])->can('invoices-form');
         // TODO: Add delete invoice route
     });

@@ -15,7 +15,7 @@
                     <a href="{{ route('invoices.print', ['id' => $invoice->id]) }}" class="bg-slate-700 hover:bg-slate-900 text-white font-bold py-2 px-4 rounded">
                         Print
                     </a>
-                    <a href="{{ route('invoices.form') }}" class="bg-slate-700 hover:bg-slate-900 text-white font-bold py-2 px-4 rounded">
+                    <a href="{{ route('invoices.export-spv', ['id' => $invoice->id]) }}" class="bg-slate-700 hover:bg-slate-900 text-white font-bold py-2 px-4 rounded">
                         Export SPV
                     </a>
                 </div>
