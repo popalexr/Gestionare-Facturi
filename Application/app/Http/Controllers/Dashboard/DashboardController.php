@@ -26,7 +26,7 @@ class DashboardController extends Controller
      * 
      * @return array
      */
-    public function generateSalesChartArray(): array
+    private function generateSalesChartArray(): array
     {
         $sales = $this->getThisWeekSales();
         $salesChart = $this->getSalesChart($sales);
@@ -68,7 +68,7 @@ class DashboardController extends Controller
      * @param array $sales
      * @return array
      */
-    public function getSalesChart(array $sales): array
+    private function getSalesChart(array $sales): array
     {
         $labels = [];
         $data = [];
@@ -83,6 +83,8 @@ class DashboardController extends Controller
             'yAxis' => $data
         ];
     }
+
+    
 
     /**
      * Get the last invoices

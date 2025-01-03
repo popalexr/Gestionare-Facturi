@@ -118,4 +118,14 @@ class User extends Authenticatable
     {
         return $this->role === 'admin';
     }
+
+    /**
+     * Get the user's invoices
+     * 
+     * @return object
+     */
+    public function getInvoices(): object
+    {
+        return $this->hasMany(Invoices::class, 'created_by')->get();
+    }
 }
