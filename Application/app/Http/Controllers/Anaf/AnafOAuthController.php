@@ -3,24 +3,29 @@
 namespace App\Http\Controllers\Anaf;
 
 use App\Http\Controllers\Controller;
+use App\OAuth\Providers\AnafProvider;
 use Illuminate\Http\Request;
-use League\OAuth2\Client\Provider\GenericProvider;
 
 class AnafOAuthController extends Controller
 {
     /**
      * Generate the provider with ANAF - SPV endpoints
      */
-    public function generateProvider(): GenericProvider
+    public function generateProvider(): AnafProvider
     {
-        return new GenericProvider([
-            'clientId'                => config('spv.client.id'),
-            'clientSecret'            => config('spv.client.secret'),
-            'redirectUri'             => route('anaf.callback'),
-            'urlAuthorize'            => config('spv.url.authorize'),
-            'urlAccessToken'          => config('spv.url.token'),
-            'urlResourceOwnerDetails' => '',
-        ]);
+        return new AnafProvider(
+            [
+                'clientId'                => config('spv.client.id'),
+                'clientSecret'            => config('spv.client.secret'),
+                'redirectUri'             => route('anaf.callback'),
+                'urlAuthorize'            => config('spv.url.authorize'),
+                'urlAccessToken'          => config('spv.url.token'),
+                'urlResourceOwnerDetails' => '',
+            ],
+            [
+                'auth' => 'basic' // Use basic authentication
+            ]
+        );
     }
 
     /**
@@ -34,6 +39,8 @@ class AnafOAuthController extends Controller
 
         // Save the state in session for security checks
         session(['oauth2state' => $provider->getState()]);
+
+        cache()->put('oauth2state', $provider->getState(), 60 * 10); // Store the state for 10 minutes
 
         return redirect($authorizationUrl);
     }
