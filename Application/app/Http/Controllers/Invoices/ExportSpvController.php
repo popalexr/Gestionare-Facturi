@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Invoices;
 
+use App\Events\ExportInvoiceToSpv;
 use App\Http\Controllers\Controller;
 use App\Models\Invoices;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ExportSpvController extends Controller
 {
@@ -21,6 +23,8 @@ class ExportSpvController extends Controller
         }
 
         $this->setInvoiceStatusAsPending($id);
+
+        ExportInvoiceToSpv::dispatch($id);
 
         return redirect()->route('invoices.index')->with('success', 'Invoice has been exported to SPV.');
     }

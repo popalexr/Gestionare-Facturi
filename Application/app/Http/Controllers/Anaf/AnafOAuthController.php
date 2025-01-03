@@ -16,7 +16,7 @@ class AnafOAuthController extends Controller
         return new GenericProvider([
             'clientId'                => config('spv.client.id'),
             'clientSecret'            => config('spv.client.secret'),
-            'redirectUri'             => '',
+            'redirectUri'             => route('anaf.callback'),
             'urlAuthorize'            => config('spv.url.authorize'),
             'urlAccessToken'          => config('spv.url.token'),
             'urlResourceOwnerDetails' => '',
@@ -65,7 +65,7 @@ class AnafOAuthController extends Controller
             ]);
 
             // Save the access token in session
-            session(['oauth2token' => $accessToken]);
+            cache()->put('oauth2token', $accessToken, $accessToken->getExpires() ?? 60 * 10); // Store the token until it expires or for 10 minutes.
 
             return redirect()->route('dashboard')->with('success', 'You have successfully connected to ANAF - SPV.');
         }

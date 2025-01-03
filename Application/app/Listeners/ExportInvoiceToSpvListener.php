@@ -2,8 +2,11 @@
 
 namespace App\Listeners;
 
+use App\Models\Invoices;
+use App\Services\SPV;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\Log;
 
 class ExportInvoiceToSpvListener implements ShouldQueue
 {
@@ -22,6 +25,17 @@ class ExportInvoiceToSpvListener implements ShouldQueue
      */
     public function handle(object $event): void
     {
-        //
+        $spv = new SPV($event->invoice_id);
+
+        $spv->generateXml();
+        $status = $spv->sendXmlToSPV();
+
+        if($status) {
+            Invoices::where('id', $event->invoice_id)->update(['spv_status' => 'approved']);
+        }
+        else
+        {
+            Invoices::where('id', $event->invoice_id)->update(['spv_status' => 'rejected']);
+        }
     }
 }

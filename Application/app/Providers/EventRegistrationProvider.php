@@ -22,5 +22,6 @@ class EventRegistrationProvider extends ServiceProvider
     {
         Event::listen('App\Events\AddedInvoice', 'App\Listeners\CalculateInvoiceValue');
         Event::listen('App\Events\UpdatedInvoice', 'App\Listeners\CalculateInvoiceValue');
+        Event::listen('App\Events\ExportInvoiceToSpv', 'App\Listeners\ExportInvoiceToSpvListener');
     }
 }
