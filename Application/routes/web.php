@@ -19,6 +19,7 @@ use App\Http\Controllers\Users\DeleteUserController;
 use App\Http\Controllers\Invoices\InvoicesController;
 use App\Http\Controllers\Invoices\InvoicesDetailsController;
 use App\Http\Controllers\Invoices\InvoicesFormController;
+use App\Http\Controllers\Invoices\DeleteInvoicesController;
 
 Route::get('/', DashboardController::class)->middleware(['auth', 'verified']);
 
@@ -53,6 +54,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/form', InvoicesFormController::class)->name('invoices.form')->can('invoices-form');
         Route::get('/export-spv', ExportSpvController::class)->name('invoices.export-spv')->can('invoices-view');
         Route::post('/form', [InvoicesFormController::class, 'post'])->can('invoices-form');
+        Route::post('/delete' , DeleteInvoicesController::class)->name('invoices.delete')->can('invoices-delete');
         // TODO: Add delete invoice route
     });
     
