@@ -143,7 +143,7 @@
         </div>
         <div id="confirm-delete-modal-component-div">
             <confirm-delete-modal-component 
-                delete-url="{{ route('clients.delete', ['id' => '{id}']) }}" 
+                delete-url="{{ route('invoices.delete', ['id' => '{id}']) }}" 
                 csrf-token="{{ csrf_token() }}">
             </confirm-delete-modal-component>
         </div>
