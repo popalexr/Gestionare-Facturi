@@ -7,6 +7,7 @@ use App\Models\Invoices;
 use App\Services\CurrencyConverter;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class DashboardController extends Controller
 {
@@ -14,10 +15,14 @@ class DashboardController extends Controller
     {
         $thisWeekSales = $this->generateSalesChartArray();
         $lastInvoices = $this->getLastInvoices(limit:5);
+        $userSales = $this->getUserSalesChart();
+        $bestUsers = $this->getBestUsers();
 
         return view('dashboard')->with([
             'thisWeekSales' => $thisWeekSales,
             'lastInvoices'  => $lastInvoices,
+            'userSales'     => $userSales,
+            'bestUsers'     => $bestUsers
         ]);
     }
 
@@ -83,8 +88,8 @@ class DashboardController extends Controller
             'yAxis' => $data
         ];
     }
-
     
+
 
     /**
      * Get the last invoices
@@ -96,4 +101,36 @@ class DashboardController extends Controller
     {
         return Invoices::latest()->limit($limit)->get();
     }
+
+    /**
+     * Get the user stats
+     * 
+     * @return array
+     */
+    private function getUserSalesChart(): array
+    {
+       $users = User::select('id', 'name', 'email')->get();
+       $users_invoice_value = [];
+       foreach ($users as $user) {
+            $value = 0;
+
+            foreach ($user->getInvoices() as $invoice) {
+                $value += CurrencyConverter::convert($invoice->value, $invoice->currency, 'ron');
+            }
+
+            $users_invoice_value += [
+                $user->name => $value
+            ];
+       }
+       return $users_invoice_value;
+    }
+
+    private function getBestUsers(int $limit = 5): Object
+    {   
+        return User::getBestSeller();
+    }
+
+    
+
+
 }

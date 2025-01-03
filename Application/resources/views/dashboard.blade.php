@@ -20,6 +20,7 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="max-w-xl w-full p-4 md:p-6">
                         <p class="leading-none text-lg font-bold text-gray-900 dark:text-white pb-2">Last 5 invoices</p>
 
@@ -71,6 +72,60 @@
                                                         </div>
                                                     </td>
                                                 @endcan
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-4">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="flex justify-between">
+                    <div class="max-w-xl w-full p-4 md:p-6">
+                        <div>
+                            <h5 class="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">Users Sales</h5>
+                            
+                        </div>
+                        <div id="dashboard-users-sales">
+                            <div class="hidden" id="dashboard-users-sales-json">
+                                @json($userSales ?? [])
+                            </div>
+                        </div>
+                    </div>
+                    <div class="max-w-xl w-full p-4 md:p-6">
+                        <p class="leading-none text-lg font-bold text-gray-900 dark:text-white pb-2">Top 5 Best Sellers</p>
+
+                        <div class="overflow-x-auto">
+                            @if ($bestUsers->count() == 0)
+                                <p class="text-sm text-gray-900 dark:text-white">No users found</p>
+                            @else
+                                <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
+                                    <thead class="bg-gray-50 dark:bg-gray-700">
+                                        <tr>
+                                            <th scope="col" class="p-4 text-xs font-medium tracking-wider text-center text-gray-500 uppercase dark:text-white">
+                                                User
+                                            </th>
+                                            <th scope="col" class="p-4 text-xs font-medium tracking-wider text-center text-gray-500 uppercase dark:text-white">
+                                                Total
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white dark:bg-gray-800">
+                                        @foreach ($bestUsers as $user)
+                                            <tr>
+                                                <td class="p-4 text-center text-sm text-gray-900 dark:text-white">
+                                                    {{ $user->name }}
+                                                </td>
+                                                <td class="p-4 text-center text-sm text-gray-900 dark:text-white">
+                                                    {{ currency_symbol('ron') }} {{ $user->total }}
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
