@@ -92,6 +92,22 @@
                                                         >
                                                             Edit
                                                             <div class="tooltip-arrow" data-popper-arrow></div>
+
+                                                        </div>
+                                                        <!-- Delete service -->
+                                                        <button type="button"
+                                                            class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-200 show-delete-modal"
+                                                            data-tooltip-target="tooltip-delete-{{ $service->id }}"
+                                                            data-id="{{ $service->id }}"
+                                                        >
+                                                            <i class="fa-solid fa-trash-can"></i>
+                                                        </button>
+                                                        <!-- Tooltip -->
+                                                        <div id="tooltip-delete-{{ $service->id }}" 
+                                                            role="tooltip" 
+                                                            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+                                                        >
+                                                            Delete
                                                         </div>
                                                     </td>
                                                 </tr>

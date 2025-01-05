@@ -20,6 +20,7 @@ use App\Http\Controllers\Invoices\InvoicesController;
 use App\Http\Controllers\Invoices\InvoicesDetailsController;
 use App\Http\Controllers\Invoices\InvoicesFormController;
 use App\Http\Controllers\Invoices\DeleteInvoicesController;
+use App\Http\Controllers\Services\DeleteServicesController;
 
 Route::get('/', DashboardController::class)->middleware(['auth', 'verified']);
 
@@ -63,6 +64,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/details', ServicesDetailsController::class)->name('services.details')->can('services-view');
         Route::get('/form', ServicesFormController::class)->name('services.form')->can('services-form');
         Route::post('/form', [ServicesFormController::class, 'post'])->can('services-form');
+        Route::post('/delete', DeleteServicesController::class)->name('services.delete')->can('services-delete');
     });
 
     Route::prefix('settings')->group(function () {
