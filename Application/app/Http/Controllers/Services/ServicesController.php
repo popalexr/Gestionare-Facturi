@@ -19,7 +19,7 @@ class ServicesController extends Controller
      */
     public function __invoke(Request $request) : View
     {
-        $services = Services::select(['id', 'name', 'price', 'currency'])->paginate(10); // Get all services from the database
+        $services = Services::select(['id', 'name', 'price', 'currency'])->whereNull('deleted_at')->paginate(10); // Get all services from the database
         
         return view('services.services-index', compact('services')); // Return the view with the services
     }
