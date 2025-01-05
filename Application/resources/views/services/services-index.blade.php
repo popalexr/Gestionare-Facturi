@@ -102,6 +102,12 @@
                                                         >
                                                             <i class="fa-solid fa-trash-can"></i>
                                                         </button>
+                                                        <div id="confirm-delete-modal-component-div">
+                                                              <confirm-delete-modal-component 
+                                                                    delete-url="{{ route('services.delete', ['id' => '{id}']) }}" 
+                                                                    csrf-token="{{ csrf_token() }}">
+                                                             </confirm-delete-modal-component>
+                                                        </div>
                                                         <!-- Tooltip -->
                                                         <div id="tooltip-delete-{{ $service->id }}" 
                                                             role="tooltip" 
@@ -123,21 +129,5 @@
             </div>
         </div>
     </div>
-
-
-    <script>
-    document.querySelectorAll('[data-tooltip-target]').forEach((element) => {
-        const tooltipId = element.getAttribute('data-tooltip-target');
-        const tooltip = document.getElementById(tooltipId);
-        element.addEventListener('mouseenter', () => {
-            tooltip.classList.remove('invisible', 'opacity-0');
-            tooltip.classList.add('visible', 'opacity-100');
-        });
-        element.addEventListener('mouseleave', () => {
-            tooltip.classList.remove('visible', 'opacity-100');
-            tooltip.classList.add('invisible', 'opacity-0');
-        });
-    });
-</script>
 
 </x-app-layout>
