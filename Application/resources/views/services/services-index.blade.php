@@ -80,7 +80,7 @@
 
                                                         <!-- Edit service details -->
                                                         <a href="{{ route('services.form', ['id' => $service->id]) }}" 
-                                                            class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-200"
+                                                            class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-200 me-2"
                                                             data-tooltip-target="tooltip-edit-{{ $service->id }}"
                                                         >
                                                             <i class="fa-solid fa-pen"></i>
