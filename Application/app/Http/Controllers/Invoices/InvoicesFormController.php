@@ -25,15 +25,16 @@ class InvoicesFormController extends Controller
     {
         $this->id = $request->get('id', 0);
 
-        if($this->id > 0 && blank($this->getInvoiceDetails($this->id))) {
-            return redirect()->route('invoices.index')->with('error', 'Invoice not found.');
-        }
-        
         if($this->id === 0) {
             return view('invoices.add-invoices');
         }
 
         $invoice = $this->getInvoiceDetails($this->id);
+
+        if(!blank($invoice->deleted_at)) {
+            return redirect()->route('invoices.index')->with('error', 'Invoice not found.');
+        }
+
         $products = $this->parseInvoiceProducts($invoice->getProducts());
 
         return view('invoices.edit-invoices')->with([
@@ -55,6 +56,10 @@ class InvoicesFormController extends Controller
         $request->validate($this->getValidationRules(), $this->getValidationMessages());
 
         $invoice = $this->getInvoiceDetails($this->id);
+
+        if(!blank($invoice) && !blank($invoice->deleted_at)) {
+            return redirect()->route('invoices.index')->with('error', 'Invoice not found.');
+        }
 
         // Begin transaction
         DB::beginTransaction();

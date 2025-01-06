@@ -77,6 +77,6 @@
     </div>
 
     <script>
-        // window.print();
+        window.print();
     </script>
 </x-print-layout>

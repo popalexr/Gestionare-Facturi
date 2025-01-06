@@ -137,7 +137,7 @@ import ApexCharts from 'apexcharts';
                     const sum = w.globals.seriesTotals.reduce((a, b) => {
                       return a + b
                     }, 0)
-                    return 'RON ' + sum 
+                    return 'RON ' + parseFloat(sum).toFixed(2) 
                   },
                 },
                 value: {
@@ -145,7 +145,7 @@ import ApexCharts from 'apexcharts';
                   fontFamily: "Inter, sans-serif",
                   offsetY: -20,
                   formatter: function (value) {
-                    return "RON " + value 
+                    return "RON " + parseFloat(value).toFixed(2) 
                   },
                 },
               },
@@ -169,14 +169,14 @@ import ApexCharts from 'apexcharts';
         yaxis: {
           labels: {
             formatter: function (value) {
-              return "RON " + value 
+              return "RON " + parseFloat(value).toFixed(2) 
             },
           },
         },
         xaxis: {
           labels: {
             formatter: function (value) {
-              return "RON " + value  
+              return "RON " + parseFloat(value).toFixed(2)  
             },
           },
           axisTicks: {

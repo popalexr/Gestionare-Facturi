@@ -21,6 +21,9 @@ class InvoicesDetailsController extends Controller
 
         $invoice = $this->getInvoiceDetails($this->id);
 
+        if(!blank($invoice->deleted_at))
+            return redirect()->route('invoices.index')->with('error', 'Invoice not found.');
+
         if(blank($invoice)) {
             return redirect()->route('invoices.index')->with('error', 'Invoice not found.');
         }

@@ -39,7 +39,7 @@ class ExportSpvController extends Controller
     {
         $invoice = Invoices::find($id);
         
-        return !blank($invoice);
+        return !blank($invoice) && blank($invoice->deleted_at);
     }
 
     /**

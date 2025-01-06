@@ -85,7 +85,7 @@ class ServicesFormController extends Controller
 
     private function serviceExists() : bool
     {
-        return Services::where('id', $this->id)->exists();
+        return Services::where('id', $this->id)->whereNull('deleted_at')->exists();
     }
 
     private function addNewService($request) : int

@@ -14,7 +14,7 @@ class ServicesDetailsController extends Controller
 
         $service = Services::find($id); // Find the service by the id
 
-        if(blank($service))
+        if(blank($service) || !blank($service->deleted_at)) // Check if the service is not found or deleted
             return redirect()->route('services.index')->with('error', 'Service not found.');
 
         // Redirect to the services index

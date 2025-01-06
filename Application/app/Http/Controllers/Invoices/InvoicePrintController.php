@@ -21,7 +21,7 @@ class InvoicePrintController extends Controller
 
         $invoice = $this->getInvoiceDetails($this->id);
 
-        if(blank($invoice)) {
+        if(blank($invoice) || !blank($invoice->deleted_at)) {
             return redirect()->route('invoices.index')->with('error', 'Invoice not found.');
         }
 
